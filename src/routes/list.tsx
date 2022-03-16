@@ -3,12 +3,13 @@ import {Button, Row, Col} from 'antd'
 import '../css/list.css'
 import {nftList} from '../mockData'
 import {map} from 'lodash'
+import { Link } from 'react-router-dom'
 
 const NFTList = () => (
-  <div className="container">
+  <>
     <div className="list-header">
       <div className="list-name">NFT list</div>
-      <Button className="create-button">Create</Button>
+      <Link to="/create"><Button className="create-button">Create</Button></Link>
     </div>
     <div className="list">
       <Row className="list-row">
@@ -20,9 +21,11 @@ const NFTList = () => (
       {
         map(nftList, ({name, id, address, createdTime}, index) => (
           <Row key={index} className="list-row">
-            <Col span={10} className="column-name">
-              <div className="column-name-avatar"/>
-              <div>{name}</div>
+            <Col span={10}>
+              <Link to="detail" className="column-name">
+                <div className="column-name-avatar"/>
+                <div>{name}</div>
+              </Link>
             </Col>
             <Col span={4}>{id}</Col>
             <Col span={6}>{address}</Col>
@@ -31,7 +34,7 @@ const NFTList = () => (
         ))
       }
     </div>
-  </div>
+  </>
 )
 
 export default NFTList

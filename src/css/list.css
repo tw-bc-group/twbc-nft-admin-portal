@@ -1,7 +1,3 @@
-.container {
-  margin: 100px 10% 0;
-}
-
 .list-header {
   display: flex;
   justify-content: space-between;
@@ -30,6 +26,7 @@
 .column-name {
   display: flex;
   align-items: center;
+  color: #000
 }
 
 .column-name-avatar {

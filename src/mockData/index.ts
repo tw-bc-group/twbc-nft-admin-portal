@@ -7,4 +7,4 @@ const mockNFT = {
   createdTime: '2022-2-20',
 }
 
-export const nftList = fill(Array(60), mockNFT)
+export const nftList = fill(Array(100), mockNFT)
