@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import NFTDetail from './routes/detail'
 import CreateNFT from './routes/createNFT'
+import NFTTransfer from "./routes/NFTTransfer";
 
 const { Header } = Layout
 
@@ -22,6 +23,7 @@ const App = () => (
         <Route path="/" element={<NFTList/>} />
         <Route path="/detail" element={<NFTDetail/>} />
         <Route path="/create" element={<CreateNFT/>} />
+        <Route path="/transfer" element={<NFTTransfer/>} />
       </Routes>
 
     </div>
