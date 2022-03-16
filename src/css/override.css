@@ -1,0 +1,9 @@
+.ant-btn, .ant-btn:hover, .ant-btn:focus {
+  color: #ffffff;
+  background: #2d2d2d;
+  line-height: unset;
+  padding: 8px 20px;
+  border-color: unset;
+  font-weight: 500;
+  height: unset;
+}
