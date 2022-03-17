@@ -14,13 +14,23 @@ const NFTDetail = () => (
       </Breadcrumb.Item>
     </Breadcrumb>
     <div className="NFTimage"></div>
+    <div className="title-container">
+      <p className="detail-title">NFT NAME</p>
+      <Link className="transfer-button" to="/transfer"><Button>Transfer</Button></Link>
+    </div>
     <div>
-      <span className= "detail-title">NFT NAME</span>
-      <Link to="/transfer"><Button>Transfer</Button></Link>
-      <p>ID</p>
-      <p>Address</p>
-      <p>Created Time</p>
-      <p>Created By</p>
+      <div className="info-name">
+        <p>ID</p>
+        <p>Address</p>
+        <p>Created Time</p>
+        <p>Created By</p>
+      </div>
+      <div className="info">
+        <p>12345678</p>
+        <p>0xs21awwer214mfd093141</p>
+        <p>2022-2-20</p>
+        <p>Admin username</p>
+      </div>
     </div>
   </div>
 )

@@ -1,6 +1,6 @@
 .content {
     position: absolute;
-    border: 2px solid black;
+    border: 1px solid black;
     width: 60%;
     top: 50%;
     left: 50%;
@@ -14,10 +14,29 @@
 .NFTimage {
     width: 100%;
     height: 300px;
+    margin-top: 30px;
+    margin-bottom: 30px;
     background-color: #a0a0a0;
 }
 
 .detail-title {
     font-size: 28px;
     font-weight: bold;
+}
+
+.title-container {
+    display: flex;
+}
+
+.transfer-button {
+    margin-left: auto;
+}
+
+.info-name {
+    display: inline-block;
+}
+
+.info {
+    display: inline-block;
+    margin-left: 30px;
 }
