@@ -1,38 +1,49 @@
 import React from 'react'
-import {Breadcrumb, Button} from "antd";
+import {Image, Button, PageHeader} from "antd";
 import {Link} from "react-router-dom";
-import '../css/detail.css'
+import '../css/detail.css';
+import img from "../images/Rectangle1.png"
 
 const NFTDetail = () => (
-  <div className="content">
-    <Breadcrumb>
-      <Breadcrumb.Item className="breadcrumb">
-        <Link to="/">List</Link>
-      </Breadcrumb.Item>
-      <Breadcrumb.Item className="breadcrumb">
-        <Link to="/detail">Detail</Link>
-      </Breadcrumb.Item>
-    </Breadcrumb>
-    <div className="NFTimage"></div>
-    <div className="title-container">
-      <p className="detail-title">NFT NAME</p>
-      <Link className="transfer-button" to="/transfer"><Button>Transfer</Button></Link>
-    </div>
-    <div>
-      <div className="info-name">
-        <p>ID</p>
-        <p>Address</p>
-        <p>Created Time</p>
-        <p>Created By</p>
+  <>
+    <PageHeader
+      onBack={() => window.history.back()}
+      title="Detail"
+      extra={[
+        <Link className="transfer-button" to="/transfer">
+          <Button type="primary">Transfer</Button>
+        </Link>
+      ]}
+    />
+    <div className="content">
+      <Image
+        width={260}
+        height={260}
+        src={img}
+      />
+      <div className="title-container">
+        <span className="detail-title">Broad Ape</span>
+        <span className="NFT-number">#1</span>
       </div>
-      <div className="info">
-        <p>12345678</p>
-        <p>0xs21awwer214mfd093141</p>
-        <p>2022-2-20</p>
-        <p>Admin username</p>
+      <div>
+        <div className="info-name">
+          <p>Created By</p>
+          <p>Created Time</p>
+          <p className="info-border">NFT Address</p>
+          <p>Owned by</p>
+          <p>Wallet Address</p>
+        </div>
+        <div className="info">
+          <p>Serati Ma</p>
+          <p>2022-2-21 16:24</p>
+          <p className="info-border">0x52B4702909382a229D2CgfA529b098B25513ed03</p>
+          <p>Serati Ma</p>
+          <p>0x52B4702909382a229D2CgfA529b098B25513ed03</p>
+        </div>
       </div>
     </div>
-  </div>
+  </>
+
 )
 
 export default NFTDetail
