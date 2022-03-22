@@ -6,10 +6,12 @@ import CreateNFT from './routes/CreateNFT'
 import TransferNFT from './routes/TransferNFT';
 import NFTDetail from './routes/Detail';
 import NFTHeader from './components/Header'
+import Navigation from './components/Navigation'
 
 const App = () => (
   <Router>
     <NFTHeader />
+    <Navigation />
     <Routes>
       <Route path="/" element={<NFTList/>} />
       <Route path="/detail" element={<NFTDetail/>} />
