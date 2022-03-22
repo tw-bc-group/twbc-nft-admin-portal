@@ -2,6 +2,7 @@ import React from 'react'
 import {Image, Button, PageHeader} from 'antd';
 import {Link} from "react-router-dom";
 import '../css/detail.less';
+import TransferNFT from "./TransferNFT";
 import img from '../assets/images/Avatar.png'
 
 const NFTDetail = () => (
@@ -10,9 +11,10 @@ const NFTDetail = () => (
       onBack={() => window.history.back()}
       title="Detail"
       extra={[
-        <Link className="transfer-button" to="/transfer">
-          <Button type="primary">Transfer</Button>
-        </Link>
+        // <Link className="transfer-button" to="/transfer">
+        //   <Button type="primary">Transfer</Button>
+        // </Link>
+        <TransferNFT/>
       ]}
     />
     <div className="content">
