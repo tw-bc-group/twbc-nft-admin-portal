@@ -1,6 +1,5 @@
 import React from 'react'
-import {Image, Button, PageHeader} from 'antd';
-import {Link} from "react-router-dom";
+import {Image, PageHeader} from 'antd';
 import '../css/detail.less';
 import TransferNFT from "./TransferNFT";
 import img from '../assets/images/Avatar.png'
