@@ -1,37 +1,20 @@
-.list-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.list-container {
+  margin: 24px auto;
+  width: 1200px;
+  background: #FFFFFF;
+  padding: 16px;
+
+  .nft-table {
+    margin-top: 16px;
+  }
 }
 
-.list-name {
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.list {
-  font-size: 18px;
+.nft-name {
+  cursor: pointer;
   font-weight: 500;
-  margin-top: 20px;
-}
+  color: rgba(0, 0, 0, .85);
 
-.list-row {
-  margin-top: 20px;
-}
-
-.column-header {
-  color: #888888;
-}
-
-.column-name {
-  display: flex;
-  align-items: center;
-  color: #000
-}
-
-.column-name-avatar {
-  width: 40px;
-  height: 40px;
-  background: #c4c4c4;
-  margin-right: 20px;
+  > span {
+    margin-left: 12px;
+  }
 }

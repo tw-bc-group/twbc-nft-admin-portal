@@ -1,40 +1,59 @@
-import React from 'react'
-import {Button, Row, Col} from 'antd'
+import React, { useState } from 'react'
+import { Radio, Table } from 'antd';
 import '../css/list.less'
-import {nftList} from '../mockData'
-import {map} from 'lodash'
+import { NFT, ownedNFTList } from '../mockData'
 import { Link } from 'react-router-dom'
+import monkey from '../assets/images/monkey.png'
+import woman from '../assets/images/woman.png'
+import { ColumnsType } from 'antd/lib/table/interface'
 
-const NFTList = () => (
-  <>
-    <div className="list-header">
-      <div className="list-name">NFT list</div>
-      <Link to="/create"><Button className="create-button">Create</Button></Link>
+const ownedNFTColumns: ColumnsType<NFT> = [
+  {
+    title: 'Name',
+    dataIndex: 'name',
+    key: 'name',
+    render: (value: string, record: any, index: number) => (
+      <Link className='nft-name' to='/detail'>
+        <img src={index < 5 ? monkey : woman} alt="" width={30} height={30}/>
+        <span>{value}</span>
+      </Link>
+    )
+  },
+  {
+    title: 'ID',
+    dataIndex: 'id',
+    key: 'id',
+  },
+  {
+    title: 'NFT address',
+    dataIndex: 'address',
+    key: 'nftAddress',
+  },
+  {
+    title: 'Created Time',
+    dataIndex: 'createdTime',
+    key: 'createdTime',
+    sorter: true,
+  },
+  {
+    title: 'Action',
+    key: 'action',
+    render: (value: string, record: any) => (<Link to='/transfer'>Transfer</Link>)
+  },
+]
+
+const NFTList = () => {
+  const [tab, setTab] = useState('owned');
+
+  return (
+    <div className='list-container'>
+      <Radio.Group onChange={e => setTab(e.target.value)} value={tab}>
+        <Radio.Button value='owned'>Owned</Radio.Button>
+        <Radio.Button value='transferred'>Transferred</Radio.Button>
+      </Radio.Group>
+      <Table dataSource={ownedNFTList} columns={ownedNFTColumns} className='nft-table' />
     </div>
-    <div className="list">
-      <Row className="list-row">
-        <Col span={10} className="column-header">Name</Col>
-        <Col span={4} className="column-header">ID</Col>
-        <Col span={6} className="column-header">Address</Col>
-        <Col span={4} className="column-header">CreatedTime</Col>
-      </Row>
-      {
-        map(nftList, ({name, id, address, createdTime}, index) => (
-          <Row key={index} className="list-row">
-            <Col span={10}>
-              <Link to="detail" className="column-name">
-                <div className="column-name-avatar"/>
-                <div>{name}</div>
-              </Link>
-            </Col>
-            <Col span={4}>{id}</Col>
-            <Col span={6}>{address}</Col>
-            <Col span={4}>{createdTime}</Col>
-          </Row>
-        ))
-      }
-    </div>
-  </>
-)
+  )
+}
 
 export default NFTList

@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import {Button, Divider, Image, Input, Modal} from "antd";
-import '../css/transferNFT.css'
-import img from "../images/Rectangle2.png";
+import '../css/transferNFT.less'
+import img from '../assets/images/woman.png';
 
 
 const TransferNFT = () => {

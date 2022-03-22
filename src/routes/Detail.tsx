@@ -2,7 +2,7 @@ import React from 'react'
 import {Image, PageHeader} from 'antd';
 import '../css/detail.less';
 import TransferNFT from "./TransferNFT";
-import img from '../assets/images/Avatar.png'
+import img from '../assets/images/avatar.png'
 
 const NFTDetail = () => (
   <>
