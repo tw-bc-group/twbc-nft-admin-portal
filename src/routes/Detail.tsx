@@ -1,8 +1,8 @@
 import React from 'react'
-import {Image, Button, PageHeader} from "antd";
+import {Image, Button, PageHeader} from 'antd';
 import {Link} from "react-router-dom";
 import '../css/detail.less';
-import img from "../images/Rectangle1.png"
+import img from '../assets/images/Avatar.png'
 
 const NFTDetail = () => (
   <>
