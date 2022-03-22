@@ -1,7 +1,7 @@
 import React from 'react'
 import {Breadcrumb, Button} from "antd";
 import {Link} from "react-router-dom";
-import '../css/transferNFT.css'
+import '../css/transferNFT.less'
 
 
 const TransferNFT = () => (

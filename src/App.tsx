@@ -2,7 +2,7 @@ import React from 'react';
 import { Layout } from 'antd';
 import NFTList from './routes/list'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import './App.css';
+import './App.less';
 import CreateNFT from './routes/createNFT'
 import TransferNFT from "./routes/TransferNFT";
 import NFTDetail from "./routes/Detail";

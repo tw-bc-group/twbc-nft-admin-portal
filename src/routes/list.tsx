@@ -1,6 +1,6 @@
 import React from 'react'
 import {Button, Row, Col} from 'antd'
-import '../css/list.css'
+import '../css/list.less'
 import {nftList} from '../mockData'
 import {map} from 'lodash'
 import { Link } from 'react-router-dom'
