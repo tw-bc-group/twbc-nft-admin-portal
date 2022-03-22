@@ -3,7 +3,8 @@ export interface NFT {
   name: string,
   id: string,
   address: string,
-  createdTime: string
+  createdTime: string,
+  transferredTime?: string,
 }
 
 export const ownedNFTList: NFT[] = [
@@ -76,5 +77,16 @@ export const ownedNFTList: NFT[] = [
     id: '#10',
     address: '0xea674fdde714fd979de3edf0f56aa9716b898ec8',
     createdTime: '2022-2-21 16:24',
+  },
+]
+
+export const transferredNFTList: NFT[] = [
+  {
+    key: '#6',
+    name: 'Crypto Punk',
+    id: '#6',
+    address: '0xf1ad01a8d50870daaeec0d17d2ce426c7ddd3722',
+    createdTime: '2022-2-21 16:24',
+    transferredTime: '2022-2-21 16:24',
   },
 ]

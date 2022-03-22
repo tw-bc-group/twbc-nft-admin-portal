@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import { Radio, Table } from 'antd';
 import '../css/list.less'
-import { NFT, ownedNFTList } from '../mockData'
+import { NFT, ownedNFTList, transferredNFTList } from '../mockData'
 import { Link } from 'react-router-dom'
 import monkey from '../assets/images/monkey.png'
 import woman from '../assets/images/woman.png'
 import { ColumnsType } from 'antd/lib/table/interface'
 
-const ownedNFTColumns: ColumnsType<NFT> = [
+const NFTColumns: ColumnsType<NFT> = [
   {
     title: 'Name',
     dataIndex: 'name',
@@ -35,11 +35,25 @@ const ownedNFTColumns: ColumnsType<NFT> = [
     key: 'createdTime',
     sorter: true,
   },
+]
+
+const ownedNFTColumns: ColumnsType<NFT> = [
+  ...NFTColumns,
   {
     title: 'Action',
     key: 'action',
     render: (value: string, record: any) => (<Link to='/transfer'>Transfer</Link>)
   },
+]
+
+const transferredColumns: ColumnsType<NFT> = [
+  ...NFTColumns,
+  {
+    title: 'Transferred Time',
+    dataIndex: 'transferredTime',
+    key: 'transferredTime',
+    sorter: true,
+  }
 ]
 
 const NFTList = () => {
@@ -51,7 +65,7 @@ const NFTList = () => {
         <Radio.Button value='owned'>Owned</Radio.Button>
         <Radio.Button value='transferred'>Transferred</Radio.Button>
       </Radio.Group>
-      <Table dataSource={ownedNFTList} columns={ownedNFTColumns} className='nft-table' />
+      <Table dataSource={tab === 'owned' ? ownedNFTList : transferredNFTList} columns={tab === 'owned' ? ownedNFTColumns: transferredColumns} className='nft-table' />
     </div>
   )
 }
