@@ -4,20 +4,15 @@ import NFTList from './routes/list'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.less';
 import CreateNFT from './routes/createNFT'
-import TransferNFT from "./routes/TransferNFT";
-import NFTDetail from "./routes/Detail";
+import TransferNFT from './routes/TransferNFT';
+import NFTDetail from './routes/Detail';
+import NFTHeader from './components/Header'
 
 const { Header } = Layout
 
 const App = () => (
   <Router>
-    <Header className="header">
-      <div className="header-left">
-        <div className="logo" />
-        <div className="portal">Portal</div>
-      </div>
-      <div className="user-name">Admin username</div>
-    </Header>
+    <NFTHeader />
     <div className="container">
       <Routes>
         <Route path="/" element={<NFTList/>} />
