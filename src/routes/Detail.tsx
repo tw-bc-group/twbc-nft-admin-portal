@@ -10,12 +10,7 @@ const NFTDetail = () => (
     <PageHeader
       onBack={() => window.history.back()}
       title="Detail"
-      extra={[
-        // <Link className="transfer-button" to="/transfer">
-        //   <Button type="primary">Transfer</Button>
-        // </Link>
-        <TransferNFT/>
-      ]}
+      extra={[<TransferNFT/>]}
     />
     <div className="content">
       <Image
