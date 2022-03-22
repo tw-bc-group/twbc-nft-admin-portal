@@ -1,11 +1,11 @@
 import React from 'react';
-import NFTList from './routes/list'
+import NFTList from './routes/List'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.less';
-import CreateNFT from './routes/createNFT'
+import CreateNFT from './routes/CreateNFT'
 import TransferNFT from './routes/TransferNFT';
 import NFTDetail from './routes/Detail';
-import NFTHeader from './components/header'
+import NFTHeader from './components/Header'
 
 const App = () => (
   <Router>
