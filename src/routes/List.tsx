@@ -43,7 +43,7 @@ const ownedNFTColumns: ColumnsType<NFT> = [
   {
     title: 'Action',
     key: 'action',
-    render: (value: string, record: any) => (
+    render: () => (
       <TransferNFT type='link' inDetail={false}/>
       // <Link to='/transfer'>Transfer</Link>
     )
