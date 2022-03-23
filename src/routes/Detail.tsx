@@ -1,16 +1,9 @@
 import React from 'react'
-import {Image, PageHeader} from 'antd';
+import {Image} from 'antd';
 import '../css/detail.less';
-import TransferNFT from "./TransferNFT";
 import img from '../assets/images/avatar.png'
 
 const NFTDetail = () => (
-  <>
-    <PageHeader
-      onBack={() => window.history.back()}
-      title="Detail"
-      extra={[<TransferNFT/>]}
-    />
     <div className="content">
       <Image
         width={260}
@@ -37,9 +30,7 @@ const NFTDetail = () => (
           <p>0x52B4702909382a229D2CgfA529b098B25513ed03</p>
         </div>
       </div>
-    </div>
-  </>
+    </div>)
 
-)
 
 export default NFTDetail

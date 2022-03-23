@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import monkey from '../assets/images/monkey.png'
 import woman from '../assets/images/woman.png'
 import { ColumnsType } from 'antd/lib/table/interface'
+import TransferNFT from "./TransferNFT";
 
 const NFTColumns: ColumnsType<NFT> = [
   {
@@ -42,7 +43,10 @@ const ownedNFTColumns: ColumnsType<NFT> = [
   {
     title: 'Action',
     key: 'action',
-    render: (value: string, record: any) => (<Link to='/transfer'>Transfer</Link>)
+    render: (value: string, record: any) => (
+      <TransferNFT type='link' inDetail={false}/>
+      // <Link to='/transfer'>Transfer</Link>
+    )
   },
 ]
 

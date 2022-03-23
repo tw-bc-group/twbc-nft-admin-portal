@@ -3,8 +3,13 @@ import {Button, Divider, Image, Input, Modal} from "antd";
 import '../css/transferNFT.less'
 import img from '../assets/images/woman.png';
 
+type TransferNFTProps = {
+  type: 'link' | 'primary',
+  inDetail: boolean
+}
 
-const TransferNFT = () => {
+const TransferNFT = (props: TransferNFTProps) => {
+  const { type, inDetail } = props
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [loading, setLoading] = useState(false)
   const showModal = () => {
@@ -16,7 +21,7 @@ const TransferNFT = () => {
     setTimeout(() => {
       setLoading(false);
       setIsModalVisible(false)
-    }, 3000);
+    }, 2000);
   };
 
   const handleCancel = () => {
@@ -26,9 +31,10 @@ const TransferNFT = () => {
 
   return (
     <>
-      <Button type="link" onClick={showModal} >
+      <Button type={type} onClick={showModal} >
         Transfer
       </Button>
+
       <Modal title="Transfer"
              visible={isModalVisible}
              onCancel={handleCancel}
@@ -39,22 +45,27 @@ const TransferNFT = () => {
                  Transfer
                </Button>}
       >
-        <div className="info-container">
-          <Image
-            width={50}
-            height={50}
-            src={img}
-          />
-          <div className="NFT-info">
-            <p className="NFT-name">Crypto Punk</p>
-            <p className="NFT-id">#1</p>
-          </div>
-        </div>
-        <Divider/>
+        {
+          !inDetail &&
+          <>
+            <div className="info-container">
+              <Image
+                width={50}
+                height={50}
+                src={img}
+              />
+              <div className="NFT-info">
+                <p className="NFT-name">Crypto Punk</p>
+                <p className="NFT-id">#1</p>
+              </div>
+            </div>
+            <Divider/>
+          </>
+        }
+
         <p>Destination Wallet Address</p>
         <Input placeholder="e.g 0x1ed3...or destination.eth"/>
       </Modal>
-
     </>
   )
 }

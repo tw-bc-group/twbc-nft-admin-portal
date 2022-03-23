@@ -16,7 +16,7 @@ const App = () => (
       <Route path="/" element={<NFTList/>} />
       <Route path="/detail" element={<NFTDetail/>} />
       <Route path="/create" element={<CreateNFT/>} />
-      <Route path="/transfer" element={<TransferNFT/>} />
+      {/*<Route path="/transfer" element={<TransferNFT/>} />*/}
     </Routes>
   </Router>
 );

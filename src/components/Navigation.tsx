@@ -4,6 +4,7 @@ import { Button } from 'antd'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import {trim, get} from 'lodash'
 import {ReactComponent as ArrowLeft} from '../assets/images/arrow-left.svg'
+import TransferNFT from "../routes/TransferNFT";
 
 const getPathName = (path: string) => trim(path, '/')
 
@@ -25,6 +26,7 @@ const Navigation = () => {
         {router}
       </div>
       {router === 'List' && <Link to='/create'><Button type='primary'>+ Create</Button></Link>}
+      {router === 'Detail' && <TransferNFT type="primary" inDetail={true}/>}
     </div>
   )
 }
