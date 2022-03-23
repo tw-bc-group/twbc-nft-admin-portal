@@ -12,6 +12,7 @@ const TransferNFT = (props: TransferNFTProps) => {
   const { type, inDetail } = props
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [loading, setLoading] = useState(false)
+  const [enableTransfer, setEnableTransfer] = useState(true)
   const showModal = () => {
     setIsModalVisible(true)
   }
@@ -28,6 +29,11 @@ const TransferNFT = (props: TransferNFTProps) => {
     setIsModalVisible(false)
   }
 
+  const checkWalletAddress = (event:any) => {
+    if(event.target.value) {
+      setEnableTransfer(false)
+    }
+  }
 
   return (
     <>
@@ -40,7 +46,7 @@ const TransferNFT = (props: TransferNFTProps) => {
              onCancel={handleCancel}
              centered
              footer={
-               <Button disabled key="submit" type="primary" loading={loading}
+               <Button disabled={enableTransfer} key="submit" type="primary" loading={loading}
                        onClick={handleTransfer}>
                  Transfer
                </Button>}
@@ -64,7 +70,7 @@ const TransferNFT = (props: TransferNFTProps) => {
         }
 
         <p>Destination Wallet Address</p>
-        <Input placeholder="e.g 0x1ed3...or destination.eth"/>
+        <Input onChange={checkWalletAddress} placeholder="e.g 0x1ed3...or destination.eth"/>
       </Modal>
     </>
   )
