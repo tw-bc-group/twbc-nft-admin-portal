@@ -32,6 +32,8 @@ const TransferNFT = (props: TransferNFTProps) => {
   const checkWalletAddress = (event:any) => {
     if(event.target.value) {
       setEnableTransfer(false)
+    } else {
+      setEnableTransfer(true)
     }
   }
 
