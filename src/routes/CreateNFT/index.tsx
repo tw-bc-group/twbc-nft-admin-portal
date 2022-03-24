@@ -2,7 +2,7 @@ import React from "react";
 import { Form, Input, Button, Upload, InputNumber } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 
-import "../css/createNFT.less";
+import "./index.less";
 import { RcFile } from "antd/lib/upload";
 import { isEmpty } from "lodash";
 
