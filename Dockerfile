@@ -1,10 +1,12 @@
-FROM node:16-alpine as common-build-stage
-
-COPY . ./app
+FROM node:16-alpine
 
 WORKDIR /app
 
-RUN npm install
+COPY ["package.json", "package-lock.json*", "yarn.lock", "./"]
+
+RUN yarn
+
+COPY . ./app
 
 EXPOSE 3000
 
