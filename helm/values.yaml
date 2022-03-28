@@ -1,0 +1,27 @@
+replicaCount: 1
+
+image:
+  repository: twbc-nft-admin-portal
+  pullPolicy: IfNotPresent
+  tag: "latest"
+
+imagePullSecrets: []
+nameOverride: "twbc-nft-admin-portal"
+fullnameOverride: "twbc-nft-admin-portal"
+
+serviceAccount:
+  create: true
+  annotations: {}
+  name: ""
+
+service:
+  type: ClusterIP
+  port: 3000
+
+host: dev.admin.nft.cn.blockchain.thoughtworks.cn
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 6
+  targetCPUUtilizationPercentage: 80
