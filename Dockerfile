@@ -6,7 +6,7 @@ COPY ["package.json", "package-lock.json*", "yarn.lock", "./"]
 
 RUN yarn
 
-COPY . ./app
+COPY . .
 
 EXPOSE 3000
 
