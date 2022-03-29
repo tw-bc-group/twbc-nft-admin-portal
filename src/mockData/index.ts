@@ -1,4 +1,4 @@
-export interface NFT {
+interface NFT {
   key: string,
   name: string,
   id: string,

@@ -1,6 +1,7 @@
 import axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios'
 import useSWR from 'swr'
-import BASE_URL from '../config'
+
+const BASE_URL = '/api'
 
 export const httpInstance = axios.create({
   baseURL: BASE_URL,
