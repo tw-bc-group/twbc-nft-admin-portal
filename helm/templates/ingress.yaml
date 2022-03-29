@@ -29,7 +29,7 @@ spec:
           #       port:
           #         number: {{ .Values.service.port }}
           - path: /api(/|$)(.*)
-            pathType: Prefix
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: twbc-nft-api-service
