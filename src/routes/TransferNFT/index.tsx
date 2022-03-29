@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button, Divider, Image, Input, Modal } from "antd";
 import "./index.less";
 import img from "../../assets/images/woman.png";
+import {httpInstance} from "../../utils/http";
 
 type TransferNFTProps = {
   type: "link" | "primary";
@@ -13,28 +14,35 @@ const TransferNFT = (props: TransferNFTProps) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [loading, setLoading] = useState(false);
   const [enableTransfer, setEnableTransfer] = useState(true);
+  const [address, setAddress] = useState('')
   const showModal = () => {
     setIsModalVisible(true);
   };
 
   const handleTransfer = () => {
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      setIsModalVisible(false);
-    }, 2000);
+
+    httpInstance.post('/nft/transfer', {id: 1, address})
+      .then(res => {
+        setLoading(false);
+        setIsModalVisible(false);
+      }).catch(err => {
+        setLoading(false)
+    })
   };
 
   const handleCancel = () => {
     setIsModalVisible(false);
   };
 
-  const checkWalletAddress = (event: any) => {
-    if (event.target.value) {
+  const checkAndSetWalletAddress = (event: any) => {
+    const inputAddress = event.target.value
+    if (inputAddress) {
       setEnableTransfer(false);
     } else {
       setEnableTransfer(true);
     }
+    setAddress(inputAddress)
   };
 
   return (
@@ -75,8 +83,9 @@ const TransferNFT = (props: TransferNFTProps) => {
 
         <p>Destination Wallet Address</p>
         <Input
-          onChange={checkWalletAddress}
+          onChange={checkAndSetWalletAddress}
           placeholder="e.g 0x1ed3...or destination.eth"
+          value={address}
         />
       </Modal>
     </>
