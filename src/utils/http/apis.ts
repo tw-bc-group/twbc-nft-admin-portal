@@ -1,8 +1,8 @@
-import httpClient from "./index";
+import {httpInstance} from "./index";
 
-async function getNFTDetail(id: Number) {
+async function getNFTDetail(id: string | undefined) {
   const path = `/nft/${id}`
-  return httpClient.get(path)
+  return httpInstance.get(path).then(response => response.data)
 }
 
 export const Apis = {
