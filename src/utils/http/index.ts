@@ -1,16 +1,31 @@
 import axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios'
-import useSWR from 'swr';
-import BASE_URL from "../config";
+import useSWR from 'swr'
+import BASE_URL from '../config'
 
 export const httpInstance = axios.create({
   baseURL: BASE_URL,
   timeout: 10000
-});
+})
 
 export const publicInstance = axios.create({
   baseURL: BASE_URL,
   timeout: 10000
 })
+
+export const authInterceptor = (clients: Array<AxiosInstance>) => {
+  clients.forEach((item) => {
+    item.interceptors.request.use(
+      async (config) => {
+        const token = sessionStorage.getItem('token')
+        if(token) {
+          config.headers!['Authorization'] = 'Bearer ' + JSON.parse(token)
+        }
+        return config
+      },
+      error => Promise.reject(error.response?.data)
+    )
+  })
+}
 
 export const errorInterceptor = (clients: Array<AxiosInstance>) => {
   clients.forEach((item) => {
@@ -27,6 +42,7 @@ export const errorInterceptor = (clients: Array<AxiosInstance>) => {
 }
 
 const initHttpInterceptors = () => {
+  authInterceptor([httpInstance])
   errorInterceptor([httpInstance])
 }
 
