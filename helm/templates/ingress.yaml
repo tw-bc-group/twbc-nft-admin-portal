@@ -27,3 +27,9 @@ spec:
                 name:  {{ include "twbc-nft-admin-portal.fullname" . }}
                 port:
                   number: {{ .Values.service.port }}
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: twbc-nft-api-service
+                port: 3000
