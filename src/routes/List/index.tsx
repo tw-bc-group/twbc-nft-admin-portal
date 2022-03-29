@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import { Radio, Table } from "antd";
 import "./index.less";
-import { NFT, ownedNFTList, transferredNFTList } from "../../mockData";
+import { NFT, transferredNFTList } from "../../mockData";
 import { Link } from "react-router-dom";
 import monkey from "../../assets/images/monkey.png";
 import woman from "../../assets/images/woman.png";
 import { ColumnsType } from "antd/lib/table/interface";
 import TransferNFT from "../TransferNFT";
+import {httpInstance} from "../../utils/http";
 
 const NFTColumns: ColumnsType<NFT> = [
   {
@@ -57,8 +58,27 @@ const transferredColumns: ColumnsType<NFT> = [
   },
 ];
 
+const useNFTList = () => {
+  const [list, setList] = useState<NFT[]>([])
+
+  useEffect(() => {
+    httpInstance.get('/nft').then(
+      res => {
+        const details = res.data.data.details
+        const list = details.map( (detail:any) => detail.key = detail.id)
+        setList(list)
+      }
+    ).catch(err => {
+      console.log(err)
+    })
+  }, [])
+
+  return list
+}
+
 const NFTList = () => {
   const [tab, setTab] = useState("owned");
+  const ownedNFTList = useNFTList()
 
   return (
     <div className="list-container">
