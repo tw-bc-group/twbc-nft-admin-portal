@@ -13,7 +13,6 @@ metadata:
   labels:
     {{- include "twbc-nft-admin-portal.labels" . | nindent 4 }}
 spec:
-  ingressClassName: nginx
   tls:
     - hosts:
       - {{ .Values.host }}
