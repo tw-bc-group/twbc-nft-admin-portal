@@ -1,38 +1,30 @@
-import React from "react";
-import "./index.less";
-import { Button } from "antd";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { trim, get } from "lodash";
-import { ReactComponent as ArrowLeft } from "../../assets/images/arrow-left.svg";
-import TransferNFT from "../../routes/TransferNFT";
-
-const getPathName = (path: string) => trim(path, "/");
-
-const navigationMap = {
-  detail: "Detail",
-  create: "Create",
-};
+import React from 'react'
+import { Button } from 'antd'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { ReactComponent as ArrowLeft } from '../../assets/images/arrow-left.svg'
+import TransferNFT from '../../routes/TransferNFT'
+import './index.less'
 
 const Navigation = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
-  const pathName = getPathName(location.pathname);
-  const router = get(navigationMap, pathName, "List");
+  const location = useLocation()
+  const navigate = useNavigate()
 
   return (
     <div className="navigation">
       <div className="router">
-        {router !== "List" && <ArrowLeft onClick={() => navigate(-1)} />}
-        {router}
+        {location.pathname !== '/' && <ArrowLeft onClick={() => navigate(-1)}/>}
+        {location.pathname === '/' && 'List'}
+        {location.pathname.startsWith('/detail') && 'Detail'}
+        {location.pathname.startsWith('/create') && 'Create'}
       </div>
-      {router === "List" && (
+      {location.pathname === '/' && (
         <Link to="/create">
           <Button type="primary">+ Create</Button>
         </Link>
       )}
-      {router === "Detail" && <TransferNFT type="primary" inDetail={true} />}
+      {location.pathname.startsWith('/detail') && <TransferNFT type="primary" inDetail={true}/>}
     </div>
-  );
-};
+  )
+}
 
-export default Navigation;
+export default Navigation

@@ -41,7 +41,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<NFTList/>}/>
           <Route path="/login" element={<Login/>}/>
-          <Route path="/detail" element={<NFTDetail/>}/>
+          <Route path="/detail/:id" element={<NFTDetail/>}/>
           <Route path="/create" element={<CreateNFT/>}/>
           <Route path="/forbidden" element={<Forbidden/>}/>
         </Routes>

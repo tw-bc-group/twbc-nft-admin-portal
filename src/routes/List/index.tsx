@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { Table } from "antd";
-import "./index.less";
-import { Link } from "react-router-dom";
-import { ColumnsType } from "antd/lib/table/interface";
-import TransferNFT from "../TransferNFT";
-import { getNFTList } from "../../utils/http/apis";
+import React, { useState } from 'react'
+import { Table } from 'antd'
+import './index.less'
+import { Link } from 'react-router-dom'
+import { ColumnsType } from 'antd/lib/table/interface'
+import TransferNFT from '../TransferNFT'
+import { useNFTList } from '../../utils/http/apis'
+import dayjs from 'dayjs'
 
 interface Denom {
   id: string;
@@ -24,79 +25,71 @@ export interface NFTItem {
 }
 
 const renderNFTName = ({ id, name }: any) => {
-  const idCount = parseInt(id.slice(-10));
-  return `${name} [#${idCount}]`;
-};
+  const idCount = parseInt(id.slice(-10))
+  return `${name} [#${idCount}]`
+}
 
 const NFTColumns: ColumnsType<NFTItem> = [
   {
-    title: "素材",
-    dataIndex: ["nft", "name"],
-    render: (value: string, record: NFTItem, index: number) => (
-      <Link className="nft-name" to="/detail">
-        <img src={record.imgUrl} alt="" width={90} height={90} />
+    title: '素材',
+    dataIndex: ['nft', 'name'],
+    render: (value: string, record: NFTItem) => (
+      <Link className="nft-name" to={`/detail/${record.nft.id}`}>
+        <img src={record.imgUrl} alt="" width={90} height={90}/>
       </Link>
     ),
-    width: 110,
+    width: 110
   },
   {
-    title: "NFT名称",
-    dataIndex: ["nft", "name"],
-    render: (value: string, record: NFTItem, index: number) => (
-      <Link className="nft-name" to="/detail">
+    title: 'NFT名称',
+    dataIndex: ['nft', 'name'],
+    render: (value: string, record: NFTItem) => (
+      <Link className="nft-name" to={`/detail/${record.nft.id}`}>
         <span>{renderNFTName(record.nft)}</span>
       </Link>
-    ),
+    )
   },
   {
-    title: "NFT编号",
-    dataIndex: ["nft", "id"],
-    ellipsis: true,
+    title: 'NFT编号',
+    dataIndex: ['nft', 'id'],
+    ellipsis: true
   },
   {
-    title: "主题名称",
-    dataIndex: ["denom", "name"],
+    title: '主题名称',
+    dataIndex: ['denom', 'name']
   },
   {
-    title: "创建时间",
-    dataIndex: "createdAt",
-    sorter: true,
-  },
-];
+    title: '创建时间',
+    dataIndex: 'createdAt',
+    render: (createdAt) => dayjs(createdAt).format('YYYY-MM-DD HH:mm:ss'),
+    sorter: (a: any, b: any) =>
+      dayjs(a.createdAt).unix() - dayjs(b.createdAt).unix()
+  }
+]
 
 const ownedNFTColumns: ColumnsType<NFTItem> = [
   ...NFTColumns,
   {
-    title: "Action",
-    key: "action",
+    title: 'Action',
+    key: 'action',
     width: 90,
-    render: () => <TransferNFT type="link" inDetail={false} />,
-  },
-];
+    render: () => <TransferNFT type="link" inDetail={false}/>
+  }
+]
 
 const transferredColumns: ColumnsType<NFTItem> = [
   ...NFTColumns,
   {
-    title: "Transferred Time",
-    dataIndex: "transferredTime",
-    key: "transferredTime",
-    sorter: true,
-  },
-];
+    title: 'Transferred Time',
+    dataIndex: 'transferredTime',
+    key: 'transferredTime',
+    sorter: true
+  }
+]
 
 const NFTList = () => {
-  const [tab, setTab] = useState("owned");
-  const [list, setList] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const resp = await getNFTList();
-
-      setList(resp);
-    };
-
-    fetchData();
-  }, []);
+  const [tab, setTab] = useState('owned')
+  const { data: list = [] } = useNFTList()
 
   return (
     <div className="list-container">
@@ -104,9 +97,15 @@ const NFTList = () => {
         <Radio.Button value="owned">Owned</Radio.Button>
         <Radio.Button value="transferred">Transferred</Radio.Button>
       </Radio.Group> */}
-      <Table pagination={{ pageSize: 100 }} dataSource={list} columns={tab === "owned" ? ownedNFTColumns : transferredColumns} className="nft-table" />
+      <Table
+        rowKey={(item) => item.nft.id}
+        pagination={{ pageSize: 100 }}
+        dataSource={list}
+        columns={tab === 'owned' ? ownedNFTColumns : transferredColumns}
+        className="nft-table"
+      />
     </div>
-  );
-};
+  )
+}
 
-export default NFTList;
+export default NFTList

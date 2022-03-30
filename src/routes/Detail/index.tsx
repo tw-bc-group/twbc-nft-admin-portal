@@ -1,9 +1,10 @@
-import React, {useEffect, useState} from "react";
-import { Image } from "antd";
-import "./index.less";
-import img from "../../assets/images/avatar.png";
-import {useParams} from "react-router-dom";
-import {httpInstance} from "../../utils/http";
+import React from 'react'
+import { Image } from 'antd'
+import dayjs from 'dayjs'
+import './index.less'
+import img from '../../assets/images/avatar.png'
+import { useParams } from 'react-router-dom'
+import { useNFTDetail } from '../../utils/http/apis'
 
 export type DetailType = {
   id: number,
@@ -16,37 +17,16 @@ export type DetailType = {
   createdBy: string
 }
 
-const useDetail = (id:string | undefined) => {
-  const [detail, setDetail] = useState<DetailType | null>(null)
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(null)
-
-  useEffect(() => {
-    setLoading(true)
-    setDetail(null)
-    setError(null)
-    httpInstance.get(`/nft/${id}`).then(res => {
-      setLoading(false)
-      setDetail(res.data.data)
-    }).catch(err => {
-      setLoading(false)
-      setError(err)
-    })
-  }, [id])
-
-  return {loading, error, detail}
-}
-
 const NFTDetail = () => {
   const { id } = useParams()
-  const {loading, error, detail} = useDetail('2')
+  const { data: detail, loading, error } = useNFTDetail('2')
 
   return (
     <div className="content">
-      <Image width={260} height={260} src={img} />
+      <Image width={260} height={260} src={img}/>
       <div className="title-container">
-        <span className="detail-title">{detail?.name}</span>
-        <span className="NFT-number">{detail?.id}</span>
+        <span className="detail-title">{detail?.data.name}</span>
+        <span className="NFT-number">{detail?.data.id}</span>
       </div>
       <div>
         <div className="info-name">
@@ -57,10 +37,10 @@ const NFTDetail = () => {
           <p>Wallet Address</p>
         </div>
         <div className="info">
-          <p>{detail?.createdBy}</p>
-          <p>{detail?.createdAt}</p>
+          <p>{detail?.data.createdBy}</p>
+          <p>{dayjs(detail?.data.createdAt).format('YYYY-MM-DD HH:mm:ss')}</p>
           <p className="info-border">
-            {detail?.address}
+            {detail?.data.address}
           </p>
           <p>Serati Ma</p>
           <p>0x52B4702909382a229D2CgfA529b098B25513ed03</p>
@@ -68,6 +48,6 @@ const NFTDetail = () => {
       </div>
     </div>
   )
-};
+}
 
-export default NFTDetail;
+export default NFTDetail

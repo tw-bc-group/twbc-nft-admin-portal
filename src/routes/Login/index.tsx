@@ -4,7 +4,7 @@ import { useRequest, useSessionStorageState } from 'ahooks'
 import { message } from 'antd'
 import { AxiosResponse } from 'axios'
 import { CommonResponse, UserLoginRequestBody, UserLoginResponse } from '../../shared/types'
-import { userLogin } from '../../utils/http/user'
+import { userLogin } from '../../utils/http/apis'
 
 const Login = () => {
   const [searchParams] = useSearchParams()

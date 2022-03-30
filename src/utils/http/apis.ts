@@ -1,13 +1,15 @@
-import { httpInstance } from "./index";
+import { publicInstance, useFetchData } from './index'
+import { NFTItem } from '../../routes/List'
+import { DetailType } from '../../routes/Detail'
+import { CommonResponse, UserLoginRequestBody } from '../../shared/types'
 
-async function getNFTDetail(id: string | undefined) {
-  const path = `/nft/${id}`;
-  return httpInstance.get(path).then((response) => response.data);
+export const useNFTDetail = (id: string | undefined) => {
+  return useFetchData<CommonResponse<DetailType>>(`/nft/${id}`)
 }
 
-async function getNFTList() {
-  const path = `/nft`;
-  return httpInstance.get(path).then((response) => response.data);
+export const useNFTList = () => {
+  return useFetchData<NFTItem[]>('/nft')
 }
 
-export { getNFTDetail, getNFTList };
+export const userLogin = (data: UserLoginRequestBody) =>
+  publicInstance.post(`/login`, data)
