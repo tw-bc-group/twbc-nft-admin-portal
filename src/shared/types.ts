@@ -1,7 +1,7 @@
 export interface CommonResponse<T> {
-  code: number;
-  data: T;
-  message: string;
+  code: number
+  data: T
+  message: string
 }
 
 export interface UserLoginRequestBody {

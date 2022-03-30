@@ -1,27 +1,28 @@
 import React, { useState } from 'react'
 import { Table } from 'antd'
-import './index.less'
 import { Link } from 'react-router-dom'
 import { ColumnsType } from 'antd/lib/table/interface'
-import TransferNFT from '../TransferNFT'
-import { useNFTList } from '../../utils/http/apis'
 import dayjs from 'dayjs'
 
+import TransferNFT from '../TransferNFT'
+import { useNFTList } from '../../utils/http/apis'
+import './index.less'
+
 interface Denom {
-  id: string;
-  name: string;
+  id: string
+  name: string
 }
 
 interface NFT {
-  id: string;
-  name: string;
+  id: string
+  name: string
 }
 
 export interface NFTItem {
-  denom: Denom;
-  nft: NFT;
-  imgUrl: string;
-  createdAt: string;
+  denom: Denom
+  nft: NFT
+  imgUrl: string
+  createdAt: string
 }
 
 const renderNFTName = ({ id, name }: any) => {
@@ -35,7 +36,7 @@ const NFTColumns: ColumnsType<NFTItem> = [
     dataIndex: ['nft', 'name'],
     render: (value: string, record: NFTItem) => (
       <Link className="nft-name" to={`/detail/${record.nft.id}`}>
-        <img src={record.imgUrl} alt="" width={90} height={90}/>
+        <img src={record.imgUrl} alt="" width={90} height={90} />
       </Link>
     ),
     width: 110
@@ -73,7 +74,7 @@ const ownedNFTColumns: ColumnsType<NFTItem> = [
     title: 'Action',
     key: 'action',
     width: 90,
-    render: () => <TransferNFT type="link" inDetail={false}/>
+    render: () => <TransferNFT type="link" inDetail={false} />
   }
 ]
 

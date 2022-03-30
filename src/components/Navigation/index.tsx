@@ -12,7 +12,9 @@ const Navigation = () => {
   return (
     <div className="navigation">
       <div className="router">
-        {location.pathname !== '/' && <ArrowLeft onClick={() => navigate(-1)}/>}
+        {location.pathname !== '/' && (
+          <ArrowLeft onClick={() => navigate(-1)} />
+        )}
         {location.pathname === '/' && 'List'}
         {location.pathname.startsWith('/detail') && 'Detail'}
         {location.pathname.startsWith('/create') && 'Create'}
@@ -22,7 +24,9 @@ const Navigation = () => {
           <Button type="primary">+ Create</Button>
         </Link>
       )}
-      {location.pathname.startsWith('/detail') && <TransferNFT type="primary" inDetail={true}/>}
+      {location.pathname.startsWith('/detail') && (
+        <TransferNFT type="primary" inDetail={true} />
+      )}
     </div>
   )
 }

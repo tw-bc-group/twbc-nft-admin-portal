@@ -18,12 +18,12 @@ export const authInterceptor = (clients: Array<AxiosInstance>) => {
     item.interceptors.request.use(
       async (config) => {
         const token = sessionStorage.getItem('token')
-        if(token) {
+        if (token) {
           config.headers!['Authorization'] = 'Bearer ' + JSON.parse(token)
         }
         return config
       },
-      error => Promise.reject(error.response?.data)
+      (error) => Promise.reject(error.response?.data)
     )
   })
 }
