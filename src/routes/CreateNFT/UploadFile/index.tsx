@@ -1,13 +1,12 @@
-import React, { useState } from 'react'
-import { Form, Upload, Image } from 'antd'
-import { PlusOutlined } from '@ant-design/icons'
-import { isEmpty } from 'lodash'
-import { RcFile } from 'antd/lib/upload'
-import { FormInstance } from 'rc-field-form'
-
-import { FileRule, UPLOAD_FILE_MAX_SIZE } from '../validation'
-import { formatBase64Image } from '../../../utils/format'
-import './index.less'
+import React, { useState } from "react";
+import { Form, Upload, Image } from "antd";
+import { PlusOutlined } from "@ant-design/icons";
+import { FileRule, UPLOAD_FILE_MAX_SIZE } from "../validation";
+import { RcFile } from "antd/lib/upload";
+import { FormInstance } from "rc-field-form";
+import "./index.less";
+import {  isEmpty } from "lodash";
+import {uploadNFTFile} from '../../../utils/http/apis'
 
 interface Props {
   form: FormInstance<any>
@@ -29,6 +28,7 @@ const uploadButton = (
   </div>
 )
 
+
 export const UploadFile = ({ form }: Props) => {
   const [visible, setVisible] = useState(false)
   const [fileUrl, setFileUrl] = useState<any>()
@@ -37,21 +37,28 @@ export const UploadFile = ({ form }: Props) => {
     setVisible(true)
   }
 
+  const handleCustomRequest= ({ file, onSuccess, onError }: any) => {
+    return uploadNFTFile(file)
+      .then((res) => {
+        onSuccess?.(res, file);
+        setFileUrl(res);
+      }).catch(onError())
+     
+  }
+
   const handleVisibleChange = (value: boolean) => {
     setVisible(value)
   }
 
   const handleBeforeUpload = async (file: RcFile) => {
     if (file.size > UPLOAD_FILE_MAX_SIZE) {
-      form.setFieldsValue({ image: [] })
-    } else {
-      setFileUrl(await formatBase64Image(file))
+      form.setFieldsValue({ image: [] });
+      return false;
     }
-    return false
-  }
+  };
 
   return (
-    <>
+    <div className="uploadImageContainer">
       <Form.Item noStyle shouldUpdate>
         {({ getFieldValue }) => {
           return (
@@ -70,6 +77,7 @@ export const UploadFile = ({ form }: Props) => {
                 beforeUpload={handleBeforeUpload}
                 maxCount={1}
                 onPreview={handlePreview}
+                customRequest={handleCustomRequest}
               >
                 {isEmpty(getFieldValue('image')) && uploadButton}
               </Upload>
@@ -79,7 +87,6 @@ export const UploadFile = ({ form }: Props) => {
       </Form.Item>
       <Image
         width={200}
-        style={{ display: 'none' }}
         src={fileUrl}
         preview={{
           visible,
@@ -87,6 +94,6 @@ export const UploadFile = ({ form }: Props) => {
           onVisibleChange: handleVisibleChange
         }}
       />
-    </>
-  )
-}
+    </div>
+  );
+};

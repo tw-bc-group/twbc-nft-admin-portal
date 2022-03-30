@@ -14,3 +14,9 @@ export interface UserLoginResponse {
   email: string
   token: string
 }
+
+export interface createNTFRequestBody{
+  count: number,
+  name: string,
+  imageUrl: string,
+}
