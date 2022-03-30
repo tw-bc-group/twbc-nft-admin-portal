@@ -1,11 +1,11 @@
 import { httpInstance, publicInstance, useFetchData } from './index'
 import { NFTItem } from '../../routes/List'
 import { DetailType } from '../../routes/Detail'
-import { CommonResponse, createNTFRequestBody, UserLoginRequestBody } from '../../shared/types'
+import { createNTFRequestBody, UserLoginRequestBody } from '../../shared/types'
 import { RcFile } from 'antd/lib/upload'
 
 export const useNFTDetail = (id: string | undefined) => {
-  return useFetchData<CommonResponse<DetailType>>(`/nft/${id}`)
+  return useFetchData<DetailType>(`/nft/${id}`)
 }
 
 export const useNFTList = () => {

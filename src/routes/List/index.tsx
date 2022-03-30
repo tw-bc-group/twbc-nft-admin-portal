@@ -8,12 +8,12 @@ import TransferNFT from '../TransferNFT'
 import { useNFTList } from '../../utils/http/apis'
 import './index.less'
 
-interface Denom {
+export interface Denom {
   id: string
   name: string
 }
 
-interface NFT {
+export interface NFT {
   id: string
   name: string
 }
