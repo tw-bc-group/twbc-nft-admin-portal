@@ -39,7 +39,7 @@
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject",
-    "lint": "eslint --ignore-path .gitignore --ext .ts src/",
+    "lint": "eslint src --ext .js,.ts,.tsx",
     "lint:fix": "yarn lint -- --fix"
   },
   "browserslist": {

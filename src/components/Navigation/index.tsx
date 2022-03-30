@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button } from 'antd'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
+
 import { ReactComponent as ArrowLeft } from '../../assets/images/arrow-left.svg'
 import TransferNFT from '../../routes/TransferNFT'
 import './index.less'

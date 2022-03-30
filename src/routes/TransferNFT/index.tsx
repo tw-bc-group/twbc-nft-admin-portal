@@ -1,49 +1,52 @@
-import React, { useState } from "react";
-import { Button, Divider, Image, Input, Modal } from "antd";
-import "./index.less";
-import img from "../../assets/images/woman.png";
-import {httpInstance} from "../../utils/http";
+import React, { useState } from 'react'
+import { Button, Divider, Image, Input, Modal } from 'antd'
+
+import './index.less'
+import img from '../../assets/images/woman.png'
+import { httpInstance } from '../../utils/http'
 
 type TransferNFTProps = {
-  type: "link" | "primary";
-  inDetail: boolean;
-};
+  type: 'link' | 'primary'
+  inDetail: boolean
+}
 
 const TransferNFT = (props: TransferNFTProps) => {
-  const { type, inDetail } = props;
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [enableTransfer, setEnableTransfer] = useState(true);
+  const { type, inDetail } = props
+  const [isModalVisible, setIsModalVisible] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [enableTransfer, setEnableTransfer] = useState(true)
   const [address, setAddress] = useState('')
   const showModal = () => {
-    setIsModalVisible(true);
-  };
+    setIsModalVisible(true)
+  }
 
   const handleTransfer = () => {
-    setLoading(true);
+    setLoading(true)
 
-    httpInstance.post('/nft/transfer', {id: 1, address})
-      .then(res => {
-        setLoading(false);
-        setIsModalVisible(false);
-      }).catch(err => {
+    httpInstance
+      .post('/nft/transfer', { id: 1, address })
+      .then((res) => {
         setLoading(false)
-    })
-  };
+        setIsModalVisible(false)
+      })
+      .catch((err) => {
+        setLoading(false)
+      })
+  }
 
   const handleCancel = () => {
-    setIsModalVisible(false);
-  };
+    setIsModalVisible(false)
+  }
 
   const checkAndSetWalletAddress = (event: any) => {
     const inputAddress = event.target.value
     if (inputAddress) {
-      setEnableTransfer(false);
+      setEnableTransfer(false)
     } else {
-      setEnableTransfer(true);
+      setEnableTransfer(true)
     }
     setAddress(inputAddress)
-  };
+  }
 
   return (
     <>
@@ -89,7 +92,7 @@ const TransferNFT = (props: TransferNFTProps) => {
         />
       </Modal>
     </>
-  );
-};
+  )
+}
 
-export default TransferNFT;
+export default TransferNFT

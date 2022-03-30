@@ -1,13 +1,13 @@
-import React from "react";
-import { Form, Input } from "antd";
-import { Rule } from "antd/lib/form";
+import React from 'react'
+import { Form, Input } from 'antd'
+import { Rule } from 'antd/lib/form'
 
 interface Props {
-  label: string;
-  name: string;
-  rule: Rule[];
-  placeholder: string;
-  className?: string;
+  label: string
+  name: string
+  rule: Rule[]
+  placeholder: string
+  className?: string
 }
 
 export const InputFormItem = ({
@@ -22,5 +22,5 @@ export const InputFormItem = ({
     <Form.Item label={label} name={name} rules={rule} {...rest}>
       <Input placeholder={placeholder} className={className} />
     </Form.Item>
-  );
-};
+  )
+}

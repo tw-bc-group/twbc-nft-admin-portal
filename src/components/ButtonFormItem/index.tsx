@@ -1,16 +1,16 @@
-import React from "react";
-import { Form, Button } from "antd";
+import React from 'react'
+import { Form, Button } from 'antd'
 
 interface Props {
-  type?: "primary" | "link" | "text" | "ghost" | "default" | "dashed";
-  htmlType?: "button" | "submit" | "reset";
-  text: string;
-  className?: string;
+  type?: 'primary' | 'link' | 'text' | 'ghost' | 'default' | 'dashed'
+  htmlType?: 'button' | 'submit' | 'reset'
+  text: string
+  className?: string
 }
 
 export const ButtonFormItem = ({
-  type = "primary",
-  htmlType = "submit",
+  type = 'primary',
+  htmlType = 'submit',
   text,
   className,
   ...rest
@@ -18,7 +18,7 @@ export const ButtonFormItem = ({
   return (
     <Form.Item
       wrapperCol={{
-        offset: 8,
+        offset: 8
       }}
       {...rest}
     >
@@ -26,5 +26,5 @@ export const ButtonFormItem = ({
         {text}
       </Button>
     </Form.Item>
-  );
-};
+  )
+}

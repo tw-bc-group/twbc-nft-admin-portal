@@ -7,6 +7,7 @@ import {
   Routes,
   useLocation
 } from 'react-router-dom'
+
 import NFTList from './routes/List'
 import CreateNFT from './routes/CreateNFT'
 import NFTDetail from './routes/Detail'
