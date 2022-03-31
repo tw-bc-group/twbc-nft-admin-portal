@@ -17,8 +17,9 @@ import Login from './routes/Login'
 import { fetcher } from './utils/http'
 import './App.less'
 import { Forbidden } from './routes/Forbidden'
+import { MyNFTList } from './routes/Mobile/MyNFTList'
 
-const isPublicUrl = ['/login', '/forbidden']
+const isPublicUrl = ['/login', '/forbidden', '/mobile']
 
 const SWRConfigValue = {
   fetcher: fetcher
@@ -49,6 +50,7 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/detail/:id" element={<NFTDetail />} />
           <Route path="/create" element={<CreateNFT />} />
+          <Route path="/mobile/list" element={<MyNFTList />} />
           <Route path="/forbidden" element={<Forbidden />} />
         </Routes>
       </Router>

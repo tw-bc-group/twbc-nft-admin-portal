@@ -18,11 +18,17 @@ export interface NFT {
   name: string
 }
 
+interface Creator {
+  wallet: string
+  name: string
+}
+
 export interface NFTItem {
   denom: Denom
   nft: NFT
   imgUrl: string
   createdAt: string
+  creator: Creator
 }
 
 const renderNFTName = ({ id, name }: any) => {

@@ -10,7 +10,8 @@ export const useNFTDetail = (id: string | undefined) => {
 }
 
 export const useNFTList = () => {
-  return useFetchData<NFTItem[]>('/nft')
+  const { data, error } = useFetchData<NFTItem[]>('/nft')
+  return { data, loading: !data && !error }
 }
 
 export const uploadNFTFile = (
