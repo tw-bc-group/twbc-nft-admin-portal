@@ -29,7 +29,9 @@ const NFTDetail = () => {
       <Image width={260} height={260} src={detail?.imgUrl} />
       <div className="title-container">
         <span className="detail-title">{detail?.nft.name}</span>
-        <span className="NFT-number">#1</span>
+        <span className="NFT-number">
+          {`#${parseInt(detail?.nft.id.slice(-10) as string)}`}
+        </span>
       </div>
       <div>
         <div className="info-name">
