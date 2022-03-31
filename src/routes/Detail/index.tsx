@@ -3,7 +3,6 @@ import { Image } from 'antd'
 import { useParams } from 'react-router-dom'
 import './index.less'
 
-import img from '../../assets/images/avatar.png'
 import { useNFTDetail } from '../../utils/http/apis'
 import { Denom, NFT } from '../List'
 
@@ -27,7 +26,7 @@ const NFTDetail = () => {
 
   return (
     <div className="content">
-      <Image width={260} height={260} src={img} />
+      <Image width={260} height={260} src={detail?.imgUrl} />
       <div className="title-container">
         <span className="detail-title">{detail?.nft.name}</span>
         <span className="NFT-number">#1</span>
