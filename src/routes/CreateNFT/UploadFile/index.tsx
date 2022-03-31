@@ -1,12 +1,13 @@
-import React, { useState } from "react";
-import { Form, Upload, Image } from "antd";
-import { PlusOutlined } from "@ant-design/icons";
-import { FileRule, UPLOAD_FILE_MAX_SIZE } from "../validation";
-import { RcFile } from "antd/lib/upload";
-import { FormInstance } from "rc-field-form";
-import "./index.less";
-import {  isEmpty } from "lodash";
-import {uploadNFTFile} from '../../../utils/http/apis'
+import React, { useState } from 'react'
+import { Form, Image, Upload } from 'antd'
+import { PlusOutlined } from '@ant-design/icons'
+import { RcFile } from 'antd/lib/upload'
+import { FormInstance } from 'rc-field-form'
+import { isEmpty } from 'lodash'
+
+import { FileRule, UPLOAD_FILE_MAX_SIZE } from '../validation'
+import { uploadNFTFile } from '../../../utils/http/apis'
+import './index.less'
 
 interface Props {
   form: FormInstance<any>
@@ -28,7 +29,6 @@ const uploadButton = (
   </div>
 )
 
-
 export const UploadFile = ({ form }: Props) => {
   const [visible, setVisible] = useState(false)
   const [fileUrl, setFileUrl] = useState<any>()
@@ -37,13 +37,13 @@ export const UploadFile = ({ form }: Props) => {
     setVisible(true)
   }
 
-  const handleCustomRequest= ({ file, onSuccess, onError }: any) => {
+  const handleCustomRequest = ({ file, onSuccess, onError }: any) => {
     return uploadNFTFile(file)
       .then((res) => {
-        onSuccess?.(res, file);
-        setFileUrl(res);
-      }).catch(onError())
-     
+        onSuccess?.(res, file)
+        setFileUrl(res)
+      })
+      .catch(onError())
   }
 
   const handleVisibleChange = (value: boolean) => {
@@ -52,10 +52,10 @@ export const UploadFile = ({ form }: Props) => {
 
   const handleBeforeUpload = async (file: RcFile) => {
     if (file.size > UPLOAD_FILE_MAX_SIZE) {
-      form.setFieldsValue({ image: [] });
-      return false;
+      form.setFieldsValue({ image: [] })
+      return false
     }
-  };
+  }
 
   return (
     <div className="uploadImageContainer">
@@ -95,5 +95,5 @@ export const UploadFile = ({ form }: Props) => {
         }}
       />
     </div>
-  );
-};
+  )
+}

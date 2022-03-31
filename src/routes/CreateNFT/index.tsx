@@ -1,44 +1,43 @@
-import React from "react";
-import { Form, message } from "antd";
+import React from 'react'
+import { Form, message } from 'antd'
 
-import "./index.less";
-import { InputFormItem } from "../../components/InputFormItem";
-import { InputNumberFormItem } from "../../components/InputNumberFormItem";
-import { ButtonFormItem } from "../../components/ButtonFormItem";
-
-import { NameRule, CountRule } from "./validation";
-import { UploadFile } from "./UploadFile";
-import { useCreateNFT } from "../../hooks/useCreateNFT";
+import './index.less'
+import { InputFormItem } from '../../components/InputFormItem'
+import { InputNumberFormItem } from '../../components/InputNumberFormItem'
+import { ButtonFormItem } from '../../components/ButtonFormItem'
+import { NameRule, CountRule } from './validation'
+import { UploadFile } from './UploadFile'
+import { useCreateNFT } from '../../hooks/useCreateNFT'
 
 interface formParamsType {
-  count: number;
-  name: string;
-  image: string[];
+  count: number
+  name: string
+  image: string[]
 }
 
 const CreateNFT = () => {
   const [form] = Form.useForm()
 
   const handleCreateSuccess = () => {
-    message.success("NFT created");
-  };
+    message.success('NFT created')
+  }
 
   const handleCreateError = () => {
-    message.error("Failed to create, please retry.");
-  };
+    message.error('Failed to create, please retry.')
+  }
 
   const { runCreateNFT } = useCreateNFT({
     onSuccess: handleCreateSuccess,
-    onError: handleCreateError,
-  });
+    onError: handleCreateError
+  })
 
   const onFinish = (values: formParamsType) => {
     runCreateNFT({
       count: values.count,
       name: values.name,
-      imageUrl: values.image[0],
-    });
-  };
+      imageUrl: values.image[0]
+    })
+  }
 
   return (
     <div className="container">
