@@ -38,15 +38,13 @@ const NFTDetail = () => {
           <p>Created By</p>
           <p>Created Time</p>
           <p className="info-border">NFT Address</p>
-          <p>Owned by</p>
           <p>Wallet Address</p>
         </div>
         <div className="info">
           <p>{detail?.creator.name}</p>
           {/*<p>{dayjs(detail?.createdAt).format('YYYY-MM-DD HH:mm:ss')}</p>*/}
           <p>{detail?.createdAt}</p>
-          <p className="info-border">NFT Address</p>
-          <p>Serati Ma</p>
+          <p className="info-border">{detail?.nft.id}</p>
           <p>{detail?.creator.wallet}</p>
         </div>
       </div>
