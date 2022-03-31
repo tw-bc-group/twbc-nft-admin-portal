@@ -24,3 +24,8 @@ export const createNFT = (data: createNTFRequestBody): Promise<string> =>
 
 export const userLogin = (data: UserLoginRequestBody) =>
   publicInstance.post(`/login`, data)
+
+export const getPresignedUrl = (contentType: string) =>
+  httpInstance.get(
+    `/file/presigned-url?contentType=${encodeURIComponent(contentType)}`
+  )

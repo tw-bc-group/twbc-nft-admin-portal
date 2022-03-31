@@ -6,11 +6,18 @@ import { FormInstance } from 'rc-field-form'
 import { isEmpty } from 'lodash'
 
 import { FileRule, UPLOAD_FILE_MAX_SIZE } from '../validation'
-import { uploadNFTFile } from '../../../utils/http/apis'
+import { getPresignedUrl, uploadNFTFile } from '../../../utils/http/apis'
 import './index.less'
+import { httpInstance } from '../../../utils/http'
 
 interface Props {
   form: FormInstance<any>
+}
+
+interface PresignedUrl {
+  fileName: string
+  uploadUrl: string
+  url: string
 }
 
 const normFile = (e: any) => {
@@ -38,10 +45,25 @@ export const UploadFile = ({ form }: Props) => {
   }
 
   const handleCustomRequest = ({ file, onSuccess, onError }: any) => {
-    return uploadNFTFile(file)
+    return getPresignedUrl(file.type)
       .then((res) => {
-        onSuccess?.(res, file)
-        setFileUrl(res)
+        const { fileName, uploadUrl, url }: PresignedUrl = res.data
+        const renamedFile = new File([file], fileName, {
+          type: file.type,
+          lastModified: file.lastModified
+        })
+
+        return httpInstance
+          .put(uploadUrl, renamedFile, {
+            responseType: 'json',
+            headers: {
+              'content-type': file.type
+            }
+          })
+          .then((res) => {
+            onSuccess?.(res, file)
+            setFileUrl(url)
+          })
       })
       .catch(onError())
   }
