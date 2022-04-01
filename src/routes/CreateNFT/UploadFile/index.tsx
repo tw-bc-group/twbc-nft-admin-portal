@@ -47,14 +47,9 @@ export const UploadFile = ({ form }: Props) => {
   const handleCustomRequest = ({ file, onSuccess, onError }: any) => {
     return getPresignedUrl(file.type)
       .then((res) => {
-        const { fileName, uploadUrl, url }: PresignedUrl = res.data
-        const renamedFile = new File([file], fileName, {
-          type: file.type,
-          lastModified: file.lastModified
-        })
-
+        const { uploadUrl, url }: PresignedUrl = res.data
         return httpInstance
-          .put(uploadUrl, renamedFile, {
+          .put(uploadUrl, file, {
             responseType: 'json',
             headers: {
               'content-type': file.type
