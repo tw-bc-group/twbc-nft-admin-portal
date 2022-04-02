@@ -2,9 +2,18 @@
   padding: 0 24px 2px;
 
   .head {
-    height: 44px;
-    line-height: 44px;
-    > span {
+    width: calc(100% - 48px);
+    height: 64px;
+    line-height: 64px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0px;
+    left: 24px;
+    background-color: #f1f2f5;
+    z-index: 1;
+    > span:first-child {
       size: 20px;
       line-height: 26px;
       font-weight: 700;
@@ -13,6 +22,7 @@
   }
 
   .listContent {
+    margin-top: 68px;
     width: 100%;
     height: calc(100vh - 92px);
     background-color: #f1f2f5;
@@ -63,5 +73,19 @@
     size: 24px;
     line-height: 30px;
     color: rgba(153, 154, 170, 1);
+  }
+}
+
+.close {
+  width: 32px;
+  height: 32px;
+  background-color: rgba(0, 0, 0, 1);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.3;
+  :hover {
+    opacity: 0.6;
   }
 }

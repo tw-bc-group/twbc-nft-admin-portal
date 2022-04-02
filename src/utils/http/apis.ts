@@ -5,8 +5,12 @@ import { NFTItem } from '../../routes/List'
 import { DetailType } from '../../routes/Detail'
 import { createNTFRequestBody, UserLoginRequestBody } from '../../shared/types'
 
-export const useNFTDetail = (id: string | undefined) => {
-  return useFetchData<DetailType>(`/nft/${id}`)
+export const useNFTDetail = (
+  denomId: string | undefined,
+  id: string | undefined
+) => {
+  const { data, error } = useFetchData<DetailType>(`/nft/${denomId}/${id}`)
+  return { data, loading: !data && !error }
 }
 
 export const useNFTList = () => {

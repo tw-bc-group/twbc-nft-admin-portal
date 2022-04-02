@@ -7,6 +7,8 @@ import placeholderImage from 'src/assets/images/placeholderImage.png'
 import { useNFTList } from 'src/utils/http/apis'
 import { NFTItem } from 'src/routes/List'
 import { LoadingProgress } from 'src/components/LoadingProgress'
+import close from 'src/assets/images/close.png'
+import { Link } from 'react-router-dom'
 
 const NoNFTItem = () => {
   return (
@@ -17,18 +19,22 @@ const NoNFTItem = () => {
   )
 }
 
-const NFTListItem = ({ nft, imgUrl, creator }: NFTItem) => {
+const NFTListItem = ({ denom, nft, imageUrl, creator }: NFTItem) => {
   return (
-    <div className="itemCard" key={nft.id}>
-      <Image
-        src={imgUrl}
-        width="100%"
-        height={327}
-        className="itemImage"
-        placeholder={
-          <Image preview={false} src={placeholderImage} width="100%" />
-        }
-      />
+    <div className="itemCard">
+      <Link to={`/mobile/nfts/detail/${denom.id}/${nft.id}`}>
+        <Image
+          src={imageUrl}
+          width="100%"
+          height={327}
+          className="itemImage"
+          preview={false}
+          placeholder={
+            <Image preview={false} src={placeholderImage} width="100%" />
+          }
+        />
+      </Link>
+
       <div className="itemInfo">
         <p>{nft.name}</p>
         <div className="creatorInfo">
@@ -40,13 +46,22 @@ const NFTListItem = ({ nft, imgUrl, creator }: NFTItem) => {
   )
 }
 
-export const MyNFTList = () => {
+export const CloseCustom = () => {
+  return (
+    <span className="close">
+      <img src={close} width={16} height={16} />
+    </span>
+  )
+}
+
+const MobileNFTList = () => {
   const { data: list = [], loading } = useNFTList()
 
   return (
     <div className="listContainer">
       <div className="head">
         <span>My NFT</span>
+        <CloseCustom />
       </div>
       {loading ? (
         <LoadingProgress />
@@ -55,10 +70,12 @@ export const MyNFTList = () => {
           {isEmpty(list) ? (
             <NoNFTItem />
           ) : (
-            map(list, (item) => <NFTListItem {...item} />)
+            map(list, (item) => <NFTListItem {...item} key={item.nft.id} />)
           )}
         </div>
       )}
     </div>
   )
 }
+
+export default MobileNFTList

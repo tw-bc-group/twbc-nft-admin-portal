@@ -5,12 +5,18 @@ const BASE_URL = '/api'
 
 export const httpInstance = axios.create({
   baseURL: BASE_URL,
-  timeout: 10000
+  timeout: 10000,
+  headers: {
+    authorization: 'Bearer 1'
+  }
 })
 
 export const publicInstance = axios.create({
   baseURL: BASE_URL,
-  timeout: 10000
+  timeout: 10000,
+  headers: {
+    authorization: 'Bearer 1'
+  }
 })
 
 export const authInterceptor = (clients: Array<AxiosInstance>) => {

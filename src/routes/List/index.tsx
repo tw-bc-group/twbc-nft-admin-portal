@@ -26,7 +26,7 @@ interface Creator {
 export interface NFTItem {
   denom: Denom
   nft: NFT
-  imgUrl: string
+  imageUrl: string
   createdAt: string
   creator: Creator
 }
@@ -40,9 +40,12 @@ const NFTColumns: ColumnsType<NFTItem> = [
   {
     title: '素材',
     dataIndex: ['nft', 'name'],
-    render: (value: string, record: NFTItem) => (
-      <Link className="nft-name" to={`/detail/${record.nft.id}`}>
-        <img src={record.imgUrl} alt="" width={90} height={90} />
+    render: (_, record) => (
+      <Link
+        className="nft-name"
+        to={`/nfts/detail/${record.denom.id}/${record.nft.id}`}
+      >
+        <img src={record.imageUrl} alt="" width={90} height={90} />
       </Link>
     ),
     width: 110
@@ -50,8 +53,11 @@ const NFTColumns: ColumnsType<NFTItem> = [
   {
     title: 'NFT名称',
     dataIndex: ['nft', 'name'],
-    render: (value: string, record: NFTItem) => (
-      <Link className="nft-name" to={`/detail/${record.nft.id}`}>
+    render: (_, record) => (
+      <Link
+        className="nft-name"
+        to={`/nfts/detail/${record.denom.id}/${record.nft.id}`}
+      >
         <span>{renderNFTName(record.nft)}</span>
       </Link>
     )

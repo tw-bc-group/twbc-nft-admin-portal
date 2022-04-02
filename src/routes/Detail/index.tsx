@@ -10,7 +10,7 @@ export type DetailType = {
   createdAt: string
   creator: Creator
   denom: Denom
-  imgUrl: string
+  imageUrl: string
   nft: NFT
 }
 
@@ -20,13 +20,12 @@ export type Creator = {
 }
 
 const NFTDetail = () => {
-  const { id } = useParams()
-  const { data: detail } = useNFTDetail(id)
-  console.log(detail)
+  const { denomId, id } = useParams()
+  const { data: detail } = useNFTDetail(denomId, id)
 
   return (
     <div className="content">
-      <Image width={260} height={260} src={detail?.imgUrl} />
+      <Image width={260} height={260} src={detail?.imageUrl} />
       <div className="title-container">
         <span className="detail-title">{detail?.nft.name}</span>
         <span className="NFT-number">
