@@ -19,4 +19,5 @@ export interface createNTFRequestBody {
   count: number
   name: string
   imageUrl: string
+  denomName: string
 }

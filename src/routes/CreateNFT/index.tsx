@@ -12,7 +12,7 @@ import { useCreateNFT } from '../../hooks/useCreateNFT'
 interface formParamsType {
   count: number
   name: string
-  image: string[]
+  image: any[]
 }
 
 const CreateNFT = () => {
@@ -35,7 +35,8 @@ const CreateNFT = () => {
     runCreateNFT({
       count: values.count,
       name: values.name,
-      imageUrl: values.image[0]
+      imageUrl: values.image?.[0]?.response?.url,
+      denomName: 'Denom'
     })
   }
 

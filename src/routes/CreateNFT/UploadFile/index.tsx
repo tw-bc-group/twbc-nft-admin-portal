@@ -38,30 +38,26 @@ const uploadButton = (
 
 export const UploadFile = ({ form }: Props) => {
   const [visible, setVisible] = useState(false)
-  const [fileUrl, setFileUrl] = useState<any>()
 
   const handlePreview = () => {
     setVisible(true)
   }
 
-  const handleCustomRequest = ({ file, onSuccess, onError }: any) => {
-    return getPresignedUrl(file.type)
-      .then((res) => {
-        const { uploadUrl, url }: PresignedUrl = res.data
+  const handleCustomRequest = async ({ file, onSuccess, onError }: any) => {
+    try {
+      const presignedUrlResponse = await getPresignedUrl(file.type)
+      const { uploadUrl, url }: PresignedUrl = presignedUrlResponse.data
 
-        return externalInstance
-          .put(uploadUrl, file, {
-            responseType: 'json',
-            headers: {
-              'content-type': file.type
-            }
-          })
-          .then((res) => {
-            onSuccess?.(res, file)
-            setFileUrl(url)
-          })
+      const uploadResponse = await externalInstance.put(uploadUrl, file, {
+        responseType: 'json',
+        headers: {
+          'content-type': file.type
+        }
       })
-      .catch(onError())
+      onSuccess?.({ url })
+    } catch (e) {
+      onError(e)
+    }
   }
 
   const handleVisibleChange = (value: boolean) => {
@@ -105,10 +101,9 @@ export const UploadFile = ({ form }: Props) => {
       </Form.Item>
       <Image
         width={200}
-        src={fileUrl}
+        src={form.getFieldValue('image')?.[0]?.response?.url}
         preview={{
           visible,
-          src: fileUrl,
           onVisibleChange: handleVisibleChange
         }}
       />

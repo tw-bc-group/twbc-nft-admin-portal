@@ -25,7 +25,11 @@ export const uploadNFTFile = (
 }
 
 export const createNFT = (data: createNTFRequestBody): Promise<string> =>
-  httpInstance.post(`/ntf`, data)
+  httpInstance.post(`/nft`, data, {
+    headers: {
+      'Content-type': 'application/json'
+    }
+  })
 
 export const userLogin = (data: UserLoginRequestBody) =>
   publicInstance.post(`/login`, data)
