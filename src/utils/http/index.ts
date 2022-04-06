@@ -54,7 +54,7 @@ export const errorInterceptor = (clients: Array<AxiosInstance>) => {
 
 const initHttpInterceptors = () => {
   authInterceptor([httpInstance])
-  errorInterceptor([httpInstance, externalInstance])
+  errorInterceptor([httpInstance])
 }
 
 initHttpInterceptors()
