@@ -1,5 +1,6 @@
 import React from 'react'
 import { Form, message } from 'antd'
+import { useNavigate } from 'react-router-dom'
 
 import './index.less'
 import { InputFormItem } from '../../components/InputFormItem'
@@ -17,16 +18,18 @@ interface formParamsType {
 
 const CreateNFT = () => {
   const [form] = Form.useForm()
+  const navigate = useNavigate()
 
   const handleCreateSuccess = () => {
     message.success('NFT created')
+    navigate('/')
   }
 
   const handleCreateError = () => {
     message.error('Failed to create, please retry.')
   }
 
-  const { runCreateNFT } = useCreateNFT({
+  const { runCreateNFT, loading } = useCreateNFT({
     onSuccess: handleCreateSuccess,
     onError: handleCreateError
   })
@@ -65,7 +68,7 @@ const CreateNFT = () => {
           placeholder="Set NFT number"
           className="countInput"
         />
-        <ButtonFormItem text="Create" />
+        <ButtonFormItem text="Create" loading={loading} />
       </Form>
     </div>
   )
