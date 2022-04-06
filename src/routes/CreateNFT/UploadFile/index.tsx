@@ -8,7 +8,7 @@ import { isEmpty } from 'lodash'
 import { FileRule, UPLOAD_FILE_MAX_SIZE } from '../validation'
 import { getPresignedUrl, uploadNFTFile } from '../../../utils/http/apis'
 import './index.less'
-import { httpInstance } from '../../../utils/http'
+import { externalInstance } from '../../../utils/http'
 
 interface Props {
   form: FormInstance<any>
@@ -48,7 +48,8 @@ export const UploadFile = ({ form }: Props) => {
     return getPresignedUrl(file.type)
       .then((res) => {
         const { uploadUrl, url }: PresignedUrl = res.data
-        return httpInstance
+
+        return externalInstance
           .put(uploadUrl, file, {
             responseType: 'json',
             headers: {

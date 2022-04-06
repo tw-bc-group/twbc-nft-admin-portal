@@ -3,6 +3,10 @@ import useSWR from 'swr'
 
 const BASE_URL = '/api'
 
+export const externalInstance = axios.create({
+  timeout: 10000
+})
+
 export const httpInstance = axios.create({
   baseURL: BASE_URL,
   timeout: 10000,
@@ -50,7 +54,7 @@ export const errorInterceptor = (clients: Array<AxiosInstance>) => {
 
 const initHttpInterceptors = () => {
   authInterceptor([httpInstance])
-  errorInterceptor([httpInstance])
+  errorInterceptor([httpInstance, externalInstance])
 }
 
 initHttpInterceptors()
