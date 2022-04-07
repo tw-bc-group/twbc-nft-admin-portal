@@ -22,7 +22,10 @@ const NFTDetail = React.lazy(() => import('./routes/Detail'))
 
 const DenomRoute = {
   list: React.lazy(() => import('./routes/Denoms/List')),
-  create: React.lazy(() => import('./routes/Denoms/Create'))
+  create: React.lazy(() => import('./routes/Denoms/Create')),
+  nfts: {
+    list: React.lazy(() => import('./routes/Denoms/NFTs/List'))
+  }
 }
 
 // mobile links
@@ -60,6 +63,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<DenomRoute.list />} />
             <Route path="/denoms/create" element={<DenomRoute.create />} />
+            <Route path="/denoms/nfts" element={<DenomRoute.nfts.list />} />
             <Route path="/nfts" element={<NFTList />} />
             <Route path="/login" element={<Login />} />
             <Route path="/nfts/detail/:denomId/:id" element={<NFTDetail />} />
