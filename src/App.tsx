@@ -14,16 +14,22 @@ import { fetcher } from './utils/http'
 import './App.less'
 import { Forbidden } from './routes/Forbidden'
 
+// admin links
 const NFTList = React.lazy(() => import('./routes/List'))
-
 const CreateNFT = React.lazy(() => import('./routes/CreateNFT'))
 const Login = React.lazy(() => import('./routes/Login'))
 const NFTDetail = React.lazy(() => import('./routes/Detail'))
+
+const DenomRoute = {
+  list: React.lazy(() => import('./routes/Denoms/List')),
+  create: React.lazy(() => import('./routes/Denoms/Create'))
+}
+
+// mobile links
 const MobileNFTDetail = React.lazy(
   () => import('./routes/Mobile/MobileNFTDetail')
 )
 const MobileNFTList = React.lazy(() => import('./routes/Mobile/MobileNFTList'))
-
 const isPublicUrl = ['/login', '/forbidden', '/mobile']
 
 const SWRConfigValue = {
@@ -52,7 +58,9 @@ const App = () => {
         <Router>
           <Header />
           <Routes>
-            <Route path="/" element={<NFTList />} />
+            <Route path="/" element={<DenomRoute.list />} />
+            <Route path="/denoms/create" element={<DenomRoute.create />} />
+            <Route path="/nfts" element={<NFTList />} />
             <Route path="/login" element={<Login />} />
             <Route path="/nfts/detail/:denomId/:id" element={<NFTDetail />} />
             <Route path="/create" element={<CreateNFT />} />

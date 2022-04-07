@@ -16,11 +16,16 @@ const Navigation = () => {
         {location.pathname !== '/' && (
           <ArrowLeft onClick={() => navigate(-1)} />
         )}
-        {location.pathname === '/' && 'List'}
+        {location.pathname === '/' && '主题列表'}
         {location.pathname.startsWith('/nfts/detail') && 'Detail'}
         {location.pathname.startsWith('/create') && 'Create'}
       </div>
       {location.pathname === '/' && (
+        <Link to="/denoms/create">
+          <Button type="primary">+ 创建主题</Button>
+        </Link>
+      )}
+      {location.pathname === '/nfts' && (
         <Link to="/create">
           <Button type="primary">+ Create</Button>
         </Link>

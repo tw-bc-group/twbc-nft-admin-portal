@@ -21,3 +21,11 @@ export interface createNTFRequestBody {
   imageUrl: string
   denomName: string
 }
+
+export interface createDenomRequestBody {
+  name: string
+  description: string
+  issuer: string
+  brand: string
+  salesTime: string
+}
