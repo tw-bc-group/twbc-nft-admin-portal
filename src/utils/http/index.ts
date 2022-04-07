@@ -4,22 +4,22 @@ import useSWR from 'swr'
 const BASE_URL = '/api'
 
 export const externalInstance = axios.create({
-  timeout: 10000
+  timeout: 30000
 })
 
 export const httpInstance = axios.create({
   baseURL: BASE_URL,
-  timeout: 10000,
+  timeout: 30000,
   headers: {
-    authorization: 'Bearer 1'
+    authorization: 'Bearer 2'
   }
 })
 
 export const publicInstance = axios.create({
   baseURL: BASE_URL,
-  timeout: 10000,
+  timeout: 30000,
   headers: {
-    authorization: 'Bearer 1'
+    authorization: 'Bearer 2'
   }
 })
 

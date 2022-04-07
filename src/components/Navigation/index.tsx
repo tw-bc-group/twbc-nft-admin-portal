@@ -17,7 +17,7 @@ const Navigation = () => {
           <ArrowLeft onClick={() => navigate(-1)} />
         )}
         {location.pathname === '/' && 'List'}
-        {location.pathname.startsWith('/detail') && 'Detail'}
+        {location.pathname.startsWith('/nfts/detail') && 'Detail'}
         {location.pathname.startsWith('/create') && 'Create'}
       </div>
       {location.pathname === '/' && (
@@ -25,7 +25,7 @@ const Navigation = () => {
           <Button type="primary">+ Create</Button>
         </Link>
       )}
-      {location.pathname.startsWith('/detail') && (
+      {location.pathname.startsWith('/nfts/detail') && (
         <TransferNFT type="primary" inDetail={true} />
       )}
     </div>

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Image } from 'antd'
 import { useParams } from 'react-router-dom'
+import dayjs from 'dayjs'
 import './index.less'
 
 import { useNFTDetail } from '../../utils/http/apis'
@@ -41,8 +42,7 @@ const NFTDetail = () => {
         </div>
         <div className="info">
           <p>{detail?.creator.name}</p>
-          {/*<p>{dayjs(detail?.createdAt).format('YYYY-MM-DD HH:mm:ss')}</p>*/}
-          <p>{detail?.createdAt}</p>
+          <p>{dayjs(detail?.createdAt).format('YYYY-MM-DD HH:mm:ss')}</p>
           <p className="info-border">{detail?.nft.id}</p>
           <p>{detail?.creator.wallet}</p>
         </div>
