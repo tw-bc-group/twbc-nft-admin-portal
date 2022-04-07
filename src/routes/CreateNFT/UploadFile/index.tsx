@@ -6,7 +6,7 @@ import { FormInstance } from 'rc-field-form'
 import { isEmpty } from 'lodash'
 
 import { FileRule, UPLOAD_FILE_MAX_SIZE } from '../validation'
-import { getPresignedUrl, uploadNFTFile } from '../../../utils/http/apis'
+import { getPresignedUrl } from '../../../utils/http/apis'
 import './index.less'
 import { externalInstance } from '../../../utils/http'
 
@@ -81,7 +81,7 @@ export const UploadFile = ({ form }: Props) => {
               name="image"
               valuePropName="fileList"
               getValueFromEvent={normFile}
-              help="File size less than 10MB"
+              extra="File size less than 10MB"
               rules={FileRule}
             >
               <Upload
