@@ -10,6 +10,8 @@ import { LoadingProgress } from 'src/components/LoadingProgress'
 import close from 'src/assets/images/close.png'
 import { Link } from 'react-router-dom'
 
+import { DenomFooter } from '../MobileDenom'
+
 const NoNFTItem = () => {
   return (
     <div className="noItem">
@@ -89,6 +91,7 @@ const MobileNFTList = () => {
           )}
         </div>
       )}
+      <DenomFooter />
     </div>
   )
 }

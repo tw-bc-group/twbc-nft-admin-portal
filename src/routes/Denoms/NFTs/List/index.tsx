@@ -14,8 +14,19 @@ export interface NFTItemInDenom {
   no: string
   name: string
   description: string
+  issueTotal: number
+  issueRemain: number
   createdAt: Date
   updatedAt: Date
+  subjectId: number
+  resourceId: number
+  resource: {
+    id: number
+    url: string
+    hash: string
+    createdAt: string
+    updatedAt: string
+  }
 }
 
 const NFTList = () => {

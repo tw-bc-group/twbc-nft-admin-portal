@@ -34,7 +34,7 @@ const MobileDenomDetails = () => {
           <BackIconCustom url={`/mobile/denom/${denomId}/collections`} />
         </div>
         <Image
-          src={undefined}
+          src={detailInfo?.resource?.url}
           width="100%"
           height={327}
           className="itemImage"
@@ -52,7 +52,7 @@ const MobileDenomDetails = () => {
             <InfoItem name="发行方" info={denomInfo?.issuer} />
             <InfoItem
               name="发行时间"
-              info={dayjs(detailInfo?.resource?.createdAt).format('YYYY-MM-DD')}
+              info={dayjs(detailInfo?.createdAt).format('YYYY-MM-DD')}
             />
           </div>
         </div>

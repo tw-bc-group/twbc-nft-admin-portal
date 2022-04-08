@@ -20,7 +20,7 @@ const CollectionItem = (item: NFTItemInDenom & { denomId?: string }) => {
       <Link to={`/mobile/denom/${item?.denomId}/collections/${item?.no}`}>
         <Image
           onClick={handleClickCollection}
-          src={undefined}
+          src={item?.resource.url}
           width="100%"
           height={163}
           className="itemImage"
@@ -62,30 +62,11 @@ const MobileDenomCollections = () => {
         <BackIconCustom url="/mobile/denom" />
       </div>
       <div className="listContent">
-        <Row justify="space-between">
-          <Col>
-            <Image
-              src={undefined}
-              width={100}
-              height={100}
-              className="denomImage"
-              preview={false}
-              placeholder={
-                <Image
-                  preview={false}
-                  src={placeholderImage}
-                  width={100}
-                  height={100}
-                />
-              }
-            />
-          </Col>
-          <Col span={16} className="denomInfo">
-            <p>{denomInfo?.name}</p>
-            <p>{denomInfo?.brand}</p>
-          </Col>
-          <Col className="denomDescription">{denomInfo?.description}</Col>
-        </Row>
+        <div className="denomInfo">
+          <p>{denomInfo?.name}</p>
+          <p>{denomInfo?.brand}</p>
+        </div>
+        <Col className="denomDescription">{denomInfo?.description}</Col>
 
         <p className="totalNumber">共有{list.length}件藏品</p>
         {loading ? (

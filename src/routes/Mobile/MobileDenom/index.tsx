@@ -9,6 +9,7 @@ import { LoadingProgress } from 'src/components/LoadingProgress'
 import homeActive from 'src/assets/images/home-active.png'
 import homeNoActive from 'src/assets/images/home-no-active.png'
 import mineNoActive from 'src/assets/images/mine-no-active.png'
+import mineActive from 'src/assets/images/mine-active.png'
 import { Link, useLocation } from 'react-router-dom'
 import { DenomItem } from 'src/routes/Denoms/List'
 
@@ -83,7 +84,15 @@ export const DenomFooter = () => {
         </Link>
       </div>
       <div>
-        <img src={mineNoActive} />
+        <Link to="/mobile/nfts">
+          <img
+            src={
+              location.pathname.startsWith('/mobile/nfts')
+                ? mineActive
+                : mineNoActive
+            }
+          />
+        </Link>
       </div>
     </div>
   )
