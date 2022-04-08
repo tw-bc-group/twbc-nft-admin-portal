@@ -36,14 +36,6 @@ const CreateNFT = () => {
     return current && current < dayjs().endOf('day')
   }
 
-  function range(start: any, end: any) {
-    const result = []
-    for (let i = start; i < end; i++) {
-      result.push(i)
-    }
-    return result
-  }
-
   return (
     <div className="container">
       <Form
