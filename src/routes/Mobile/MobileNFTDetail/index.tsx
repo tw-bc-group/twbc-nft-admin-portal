@@ -11,9 +11,13 @@ import copy from 'src/assets/images/copy.png'
 
 import { CloseCustom } from '../MobileNFTList'
 
-export const BackIconCustom = () => {
+interface BackIconCustomProps {
+  url: string
+}
+
+export const BackIconCustom = ({ url }: BackIconCustomProps) => {
   return (
-    <Link to="/mobile/nfts">
+    <Link to={url}>
       <span className="backIcon">
         <LeftOutlined />
       </span>
@@ -42,7 +46,7 @@ const MobileNFTDetail = () => {
         <div className="NFTDetails">
           {copied && <div className="copied">Address copied</div>}
           <div className="head">
-            <BackIconCustom />
+            <BackIconCustom url="/mobile/nfts" />
             <CloseCustom />
           </div>
           <Image

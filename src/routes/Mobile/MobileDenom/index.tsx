@@ -19,11 +19,22 @@ const NoDenomItem = () => {
   )
 }
 
-const DenomListItem = ({ name, no, brand }: DenomItem) => {
+const DenomListItem = ({ name, no, brand, description }: DenomItem) => {
+  const handleOnclickDenom = () => {
+    sessionStorage.setItem(
+      'denomInfo',
+      JSON.stringify({
+        name,
+        brand,
+        description
+      })
+    )
+  }
   return (
     <div className="itemCard">
       <Link to={`/mobile/denom/${no}/collections`}>
         <Image
+          onClick={handleOnclickDenom}
           src={undefined}
           width="100%"
           height={327}
@@ -62,7 +73,7 @@ const MobileDenom = () => {
   const { data: list = [], loading } = useDenomsList()
 
   return (
-    <div className="listContainer">
+    <div className="denomContainer">
       <div className="head">
         <span>NFT</span>
         <CloseCustom />
