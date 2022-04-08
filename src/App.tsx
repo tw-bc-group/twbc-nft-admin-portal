@@ -30,10 +30,14 @@ const DenomRoute = {
 }
 
 // mobile links
-const MobileNFTDetail = React.lazy(
-  () => import('./routes/Mobile/MobileNFTDetail')
-)
-const MobileNFTList = React.lazy(() => import('./routes/Mobile/MobileNFTList'))
+const MobileDenomRoute = {
+  list: React.lazy(() => import('./routes/Mobile/MobileDenom')),
+  nfts: {
+    list: React.lazy(() => import('./routes/Mobile/MobileNFTList')),
+    details: React.lazy(() => import('./routes/Mobile/MobileNFTDetail'))
+  }
+}
+
 const isPublicUrl = ['/login', '/forbidden', '/mobile']
 
 const SWRConfigValue = {
@@ -76,11 +80,17 @@ const App = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/nfts/detail/:denomId/:id" element={<NFTDetail />} />
             <Route path="/create" element={<CreateNFT />} />
-            <Route path="/mobile/nfts" element={<MobileNFTList />} />
+
+            <Route path="/mobile/denom" element={<MobileDenomRoute.list />} />
+            <Route
+              path="/mobile/nfts"
+              element={<MobileDenomRoute.nfts.list />}
+            />
             <Route
               path="/mobile/nfts/detail/:denomId/:id"
-              element={<MobileNFTDetail />}
+              element={<MobileDenomRoute.nfts.details />}
             />
+
             <Route path="/forbidden" element={<Forbidden />} />
           </Routes>
         </Router>
