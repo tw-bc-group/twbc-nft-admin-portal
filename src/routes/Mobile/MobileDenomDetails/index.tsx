@@ -49,7 +49,7 @@ const MobileDenomDetails = () => {
           <div className="denomDetails">
             <InfoItem name="藏品故事" info={denomInfo?.description} />
             <InfoItem name="品牌方" info={denomInfo?.brand} />
-            <InfoItem name="发行方" info="Thoughtworks" />
+            <InfoItem name="发行方" info={denomInfo?.issuer} />
             <InfoItem
               name="发行时间"
               info={dayjs(detailInfo?.resource?.createdAt).format('YYYY-MM-DD')}

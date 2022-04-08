@@ -6,8 +6,10 @@ import noItem from 'src/assets/images/noItem.svg'
 import placeholderImage from 'src/assets/images/placeholderImage.png'
 import { useDenomsList } from 'src/utils/http/apis'
 import { LoadingProgress } from 'src/components/LoadingProgress'
-import close from 'src/assets/images/close.png'
-import { Link } from 'react-router-dom'
+import homeActive from 'src/assets/images/home-active.png'
+import homeNoActive from 'src/assets/images/home-no-active.png'
+import mineNoActive from 'src/assets/images/mine-no-active.png'
+import { Link, useLocation } from 'react-router-dom'
 import { DenomItem } from 'src/routes/Denoms/List'
 
 import { CloseCustom } from '../MobileNFTList'
@@ -21,14 +23,15 @@ const NoDenomItem = () => {
   )
 }
 
-const DenomListItem = ({ name, no, brand, description }: DenomItem) => {
+const DenomListItem = ({ name, no, brand, description, issuer }: DenomItem) => {
   const handleClickDenom = () => {
     sessionStorage.setItem(
       'denomInfo',
       JSON.stringify({
         name,
         brand,
-        description
+        description,
+        issuer
       })
     )
   }
@@ -63,6 +66,29 @@ const DenomListItem = ({ name, no, brand, description }: DenomItem) => {
   )
 }
 
+export const DenomFooter = () => {
+  const location = useLocation()
+
+  return (
+    <div className="footer">
+      <div>
+        <Link to="/mobile/denom">
+          <img
+            src={
+              location.pathname.startsWith('/mobile/denom')
+                ? homeActive
+                : homeNoActive
+            }
+          />
+        </Link>
+      </div>
+      <div>
+        <img src={mineNoActive} />
+      </div>
+    </div>
+  )
+}
+
 const MobileDenom = () => {
   const { data: list = [], loading } = useDenomsList()
 
@@ -85,6 +111,8 @@ const MobileDenom = () => {
           )}
         </div>
       )}
+
+      <DenomFooter />
     </div>
   )
 }
