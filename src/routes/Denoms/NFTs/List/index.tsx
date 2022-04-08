@@ -39,6 +39,11 @@ const NFTList = () => {
 
   const columns: ColumnsType<NFTItemInDenom> = [
     {
+      title: '缩略图',
+      dataIndex: ['resource', 'url'],
+      render: (url) => <img src={url} alt="" width={200} height={200} />
+    },
+    {
       title: '编号',
       dataIndex: 'no'
     },
