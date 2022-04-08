@@ -85,8 +85,8 @@ const ownedNFTColumns: ColumnsType<NFTItem> = [
   {
     title: 'Action',
     key: 'action',
-    width: 90,
-    render: () => <TransferNFT type="link" inDetail={false} />
+    width: 90
+    // render: () => <TransferNFT type="link" inDetail={false} />
   }
 ]
 

@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react'
-import { Table, Tag, Button, message } from 'antd'
-import { useNavigate, useParams } from 'react-router-dom'
+import React from 'react'
+import { Table } from 'antd'
+import { useParams } from 'react-router-dom'
 import { ColumnsType } from 'antd/lib/table/interface'
 import dayjs from 'dayjs'
 
+import TransferNFT from '../../../TransferNFT'
 import { useNFTsListInDenom } from '../../../../utils/http/apis'
 
 import './index.less'
@@ -20,22 +21,6 @@ export interface NFTItemInDenom {
 const NFTList = () => {
   const { denomId } = useParams()
   const { data: list = [] } = useNFTsListInDenom(denomId)
-
-  // const navigate = useNavigate()
-
-  // const handleCreateSuccess = () => {
-  //   message.success('主题已上线')
-  //   navigate(0)
-  // }
-
-  // const handleCreateError = () => {
-  //   message.error('Failed to online, please retry.')
-  // }
-
-  // const { runSetDenomOnline, loading } = useSetDenomOnline({
-  //   onSuccess: handleCreateSuccess,
-  //   onError: handleCreateError
-  // })
 
   const columns: ColumnsType<NFTItemInDenom> = [
     {
@@ -69,9 +54,16 @@ const NFTList = () => {
     {
       title: 'Action',
       key: 'action',
-      render: (v) => {
-        return <Button type="primary">铸造</Button>
-      }
+      render: (r) => (
+        <TransferNFT
+          type="primary"
+          inDetail={false}
+          name={r.name}
+          no={r.no}
+          url={r.resource.url}
+          dno={denomId}
+        />
+      )
     }
   ]
 
