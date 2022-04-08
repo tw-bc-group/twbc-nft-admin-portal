@@ -85,3 +85,8 @@ export const createNFTsListInDenom = (
       'Content-type': 'application/json'
     }
   })
+
+export const useMyNFTList = (email: string) => {
+  const { data, error } = useFetchData<any[]>(`/mintRecords?email=${email}`)
+  return { data, loading: !data && !error }
+}

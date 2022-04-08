@@ -1,10 +1,10 @@
 import React from 'react'
 import './index.less'
-import { isEmpty, map } from 'lodash'
+import { isEmpty, map, orderBy } from 'lodash'
 import { Image } from 'antd'
 import noItem from 'src/assets/images/noItem.svg'
 import placeholderImage from 'src/assets/images/placeholderImage.png'
-import { useNFTList } from 'src/utils/http/apis'
+import { useMyNFTList } from 'src/utils/http/apis'
 import { NFTItem } from 'src/routes/List'
 import { LoadingProgress } from 'src/components/LoadingProgress'
 import close from 'src/assets/images/close.png'
@@ -19,10 +19,10 @@ const NoNFTItem = () => {
   )
 }
 
-const NFTListItem = ({ denom, nft, imageUrl, creator }: NFTItem) => {
+const NFTListItem = ({ denom, nft, imageUrl, subject }: any) => {
   return (
     <div className="itemCard">
-      <Link to={`/mobile/nfts/detail/${denom.id}/${nft.id}`}>
+      <Link to={`/mobile/nfts/detail/${subject.no}/${nft.no}`}>
         <Image
           src={imageUrl}
           width="100%"
@@ -36,10 +36,14 @@ const NFTListItem = ({ denom, nft, imageUrl, creator }: NFTItem) => {
       </Link>
 
       <div className="itemInfo">
-        <p>{nft.name}</p>
+        <p>藏品名称：{nft.name}</p>
         <div className="creatorInfo">
-          <span> Created by</span>
-          <span> {creator?.name}</span>
+          <span> 主题 </span>
+          <span> {subject?.name}</span>
+        </div>
+        <div className="creatorInfo">
+          <span> 品牌方 </span>
+          <span> {subject?.brand}</span>
         </div>
       </div>
     </div>
@@ -55,7 +59,9 @@ export const CloseCustom = () => {
 }
 
 const MobileNFTList = () => {
-  const { data: list = [], loading } = useNFTList()
+  const { data: list = [], loading } = useMyNFTList(
+    'adam.wong@thoughtworks.com'
+  )
 
   return (
     <div className="listContainer">
@@ -70,7 +76,16 @@ const MobileNFTList = () => {
           {isEmpty(list) ? (
             <NoNFTItem />
           ) : (
-            map(list, (item) => <NFTListItem {...item} key={item.nft.id} />)
+            map(orderBy(list, ['createdAt'], ['desc']), (item) => {
+              const data = {
+                subject: item.collection.subject,
+                imageUrl: item.collection.resource.url,
+                denom: item.collection.subject,
+                nft: item.collection,
+                createdAt: item.createdAt
+              }
+              return <NFTListItem {...data} key={item.no} />
+            })
           )}
         </div>
       )}
