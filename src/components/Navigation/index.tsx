@@ -33,6 +33,11 @@ const Navigation = () => {
       {location.pathname.startsWith('/nfts/detail') && (
         <TransferNFT type="primary" inDetail={true} />
       )}
+      {location.pathname.startsWith('/denoms/') && (
+        <Link to={`${location.pathname}/create`}>
+          <Button type="primary">+ 创建藏品</Button>
+        </Link>
+      )}
     </div>
   )
 }

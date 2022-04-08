@@ -1,47 +1,43 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Table, Tag, Button, message } from 'antd'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { ColumnsType } from 'antd/lib/table/interface'
 import dayjs from 'dayjs'
 
-import { useDenomsList, setDenomOnline } from '../../../../utils/http/apis'
-import { useSetDenomOnline } from '../../../../hooks/useSetDenomOnline'
+import { useNFTsListInDenom } from '../../../../utils/http/apis'
 
 import './index.less'
 
-export interface DenomItem {
+export interface NFTItemInDenom {
   id: number
   no: string
   name: string
   description: string
-  issuer: string
-  brand: string
-  status: number
-  salesTime: Date
   createdAt: Date
   updatedAt: Date
 }
 
 const NFTList = () => {
-  const { data: list = [] } = useDenomsList()
+  const { denomId } = useParams()
+  const { data: list = [] } = useNFTsListInDenom(denomId)
 
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
 
-  const handleCreateSuccess = () => {
-    message.success('主题已上线')
-    navigate(0)
-  }
+  // const handleCreateSuccess = () => {
+  //   message.success('主题已上线')
+  //   navigate(0)
+  // }
 
-  const handleCreateError = () => {
-    message.error('Failed to online, please retry.')
-  }
+  // const handleCreateError = () => {
+  //   message.error('Failed to online, please retry.')
+  // }
 
-  const { runSetDenomOnline, loading } = useSetDenomOnline({
-    onSuccess: handleCreateSuccess,
-    onError: handleCreateError
-  })
+  // const { runSetDenomOnline, loading } = useSetDenomOnline({
+  //   onSuccess: handleCreateSuccess,
+  //   onError: handleCreateError
+  // })
 
-  const columns: ColumnsType<DenomItem> = [
+  const columns: ColumnsType<NFTItemInDenom> = [
     {
       title: '编号',
       dataIndex: 'no'
@@ -51,29 +47,12 @@ const NFTList = () => {
       dataIndex: 'name'
     },
     {
-      title: '状态',
-      dataIndex: 'status',
-      render: (record) => {
-        console.log(record)
-        return record == 0 ? (
-          <Tag color="red">未发布</Tag>
-        ) : (
-          <Tag color="green">已发布</Tag>
-        )
-      }
+      title: '发行总量',
+      dataIndex: ['issueTotal']
     },
     {
-      title: '发行人',
-      dataIndex: ['issuer']
-    },
-    {
-      title: '品牌方',
-      dataIndex: ['brand']
-    },
-    {
-      title: '销售时间',
-      dataIndex: ['salesTime'],
-      render: (t) => dayjs(t).format('YYYY-MM-DD HH:mm:ss')
+      title: '发行剩余',
+      dataIndex: ['issueRemain']
     },
     {
       title: '创建时间',
@@ -85,22 +64,11 @@ const NFTList = () => {
     {
       title: 'Action',
       key: 'action',
-      render: (v) => renderOnlineBtn(v)
+      render: (v) => {
+        return <Button type="primary">铸造</Button>
+      }
     }
   ]
-
-  const renderOnlineBtn = (v: any) => {
-    return v.status === 0 ? (
-      <Button
-        type="link"
-        onClick={() => {
-          runSetDenomOnline(v.no)
-        }}
-      >
-        发布上线！
-      </Button>
-    ) : null
-  }
 
   return (
     <div className="list-container">

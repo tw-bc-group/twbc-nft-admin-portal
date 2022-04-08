@@ -54,7 +54,6 @@ const NFTList = () => {
       title: '状态',
       dataIndex: 'status',
       render: (record) => {
-        console.log(record)
         return record == 0 ? (
           <Tag color="red">未发布</Tag>
         ) : (
@@ -105,6 +104,13 @@ const NFTList = () => {
   return (
     <div className="list-container">
       <Table
+        onRow={(record) => {
+          return {
+            onClick: () => {
+              navigate(`/denoms/${record.no}/collections`)
+            }
+          }
+        }}
         rowKey={(item) => item.no}
         pagination={{ pageSize: 100 }}
         dataSource={list}

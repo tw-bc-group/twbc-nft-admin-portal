@@ -6,9 +6,11 @@ import { DetailType } from '../../routes/Detail'
 import {
   createDenomRequestBody,
   createNTFRequestBody,
-  UserLoginRequestBody
+  UserLoginRequestBody,
+  createNFTinDenomRequestBody
 } from '../../shared/types'
 import { DenomItem } from '../../routes/Denoms/List'
+import { NFTItemInDenom } from '../../routes/Denoms/NFTs/List'
 
 export const useNFTDetail = (
   denomId: string | undefined,
@@ -66,3 +68,20 @@ export const useDenomsList = () => {
   const { data, error } = useFetchData<DenomItem[]>(`/denoms`)
   return { data, loading: !data && !error }
 }
+
+export const useNFTsListInDenom = (denomId: string | undefined) => {
+  const { data, error } = useFetchData<NFTItemInDenom[]>(
+    `/denoms/${denomId}/collections`
+  )
+  return { data, loading: !data && !error }
+}
+
+export const createNFTsListInDenom = (
+  denomId: string | undefined,
+  data: createNFTinDenomRequestBody
+): Promise<string> =>
+  httpInstance.post(`/denoms/${denomId}/collections`, data, {
+    headers: {
+      'Content-type': 'application/json'
+    }
+  })

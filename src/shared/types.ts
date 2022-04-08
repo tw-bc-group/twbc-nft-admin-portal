@@ -29,3 +29,10 @@ export interface createDenomRequestBody {
   brand: string
   salesTime: string
 }
+
+export interface createNFTinDenomRequestBody {
+  name: string
+  description: string
+  issueTotal: number
+  url: string
+}
