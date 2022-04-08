@@ -19,6 +19,7 @@ const Navigation = () => {
         {location.pathname === '/' && '主题列表'}
         {location.pathname.startsWith('/nfts/detail') && 'Detail'}
         {location.pathname.startsWith('/create') && 'Create'}
+        {location.pathname.startsWith('/denoms/') && '藏品'}
       </div>
       {location.pathname === '/' && (
         <Link to="/denoms/create">
