@@ -1,8 +1,7 @@
 import React from 'react'
 import './index.less'
-import { isEmpty, map } from 'lodash'
+import { map } from 'lodash'
 import { Col, Image, Row } from 'antd'
-import noItem from 'src/assets/images/noItem.svg'
 import placeholderImage from 'src/assets/images/placeholderImage.png'
 import { useNFTsListInDenom } from 'src/utils/http/apis'
 import { LoadingProgress } from 'src/components/LoadingProgress'
@@ -12,24 +11,15 @@ import { NFTItemInDenom } from 'src/routes/Denoms/NFTs/List'
 
 import { BackIconCustom } from '../MobileNFTDetail'
 
-const NoDenomItem = () => {
-  return (
-    <div className="noItem">
-      <img src={noItem} width={115} height={75} />
-      <p>No Items Yet</p>
-    </div>
-  )
-}
-
-const CollectionItem = ({
-  denomId,
-  name,
-  no
-}: NFTItemInDenom & { denomId?: string }) => {
+const CollectionItem = (item: NFTItemInDenom & { denomId?: string }) => {
+  const handleClickCollection = () => {
+    sessionStorage.setItem('detailInfo', JSON.stringify(item))
+  }
   return (
     <Col className="itemCard">
-      <Link to={`/mobile/denom/${denomId}/collections/${no}`}>
+      <Link to={`/mobile/denom/${item?.denomId}/collections/${item?.no}`}>
         <Image
+          onClick={handleClickCollection}
           src={undefined}
           width="100%"
           height={163}
@@ -47,7 +37,7 @@ const CollectionItem = ({
       </Link>
 
       <div className="itemInfo">
-        <p>{name}</p>
+        <p>{item?.name}</p>
       </div>
     </Col>
   )
@@ -102,13 +92,9 @@ const MobileDenomCollections = () => {
           <LoadingProgress />
         ) : (
           <Row justify="space-between">
-            {isEmpty(list) ? (
-              <NoDenomItem />
-            ) : (
-              map(list, (item) => (
-                <CollectionItem denomId={denomId} {...item} key={item.id} />
-              ))
-            )}
+            {map(list, (item) => (
+              <CollectionItem denomId={denomId} {...item} key={item.id} />
+            ))}
           </Row>
         )}
       </div>

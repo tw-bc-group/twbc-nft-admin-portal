@@ -35,6 +35,7 @@ const MobileDenomRoute = {
   collections: React.lazy(
     () => import('./routes/Mobile/MobileDenomCollections')
   ),
+  details: React.lazy(() => import('./routes/Mobile/MobileDenomDetails')),
 
   nfts: {
     list: React.lazy(() => import('./routes/Mobile/MobileNFTList')),
@@ -89,6 +90,10 @@ const App = () => {
             <Route
               path="/mobile/denom/:denomId/collections"
               element={<MobileDenomRoute.collections />}
+            />
+            <Route
+              path="/mobile/denom/:denomId/collections/:nftId"
+              element={<MobileDenomRoute.details />}
             />
             <Route
               path="/mobile/nfts"

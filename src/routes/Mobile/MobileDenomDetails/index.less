@@ -1,0 +1,111 @@
+.denomDetailContainer {
+  height: 100vh;
+  background-color: #fff;
+  .NFTDetails {
+    position: relative;
+
+    .head {
+      width: 100%;
+      height: 64px;
+      line-height: 64px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      top: 0px;
+      left: 0;
+      padding: 24px;
+      z-index: 1;
+    }
+
+    .footer {
+      width: 100%;
+      line-height: 64px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      bottom: 0px;
+      padding: 8px 24px 32px;
+
+      left: 0;
+
+      z-index: 1;
+      > span {
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+        background-color: #4200d4;
+        border-radius: 100px;
+        height: 44px;
+        line-height: 44px;
+        line-height: 44px;
+        color: white;
+        font-weight: 600;
+        font-size: 16px;
+      }
+    }
+    .itemImage {
+      background-color: #f1f2f5;
+    }
+  }
+
+  .info {
+    padding: 24px;
+    position: relative;
+    border-radius: 20px 20px 0 0;
+    z-index: 1;
+    top: -20px;
+    background-color: white;
+    animation: move 0.8s linear 0s;
+
+    .name {
+      line-height: 30px;
+      font-size: 24px;
+      font-weight: 700;
+      color: rgba(17, 17, 17, 1);
+      margin-bottom: 8px;
+    }
+    .brand {
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 22px;
+      color: rgba(17, 17, 17, 1);
+      margin-bottom: 32px;
+    }
+  }
+}
+
+.backIcon {
+  width: 32px;
+  height: 32px;
+  background-color: rgba(0, 0, 0, 1);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.3;
+  color: rgba(255, 255, 255, 1);
+  :hover {
+    opacity: 0.6;
+  }
+}
+
+@keyframes move {
+  0% {
+    top: 100px;
+  }
+  100% {
+    top: -20px;
+  }
+}
+
+.infoItem {
+  > p:first-child {
+    color: rgba(153, 154, 170, 1);
+    margin-bottom: 2px;
+  }
+  > p:last-child {
+    margin-bottom: 24px;
+  }
+}

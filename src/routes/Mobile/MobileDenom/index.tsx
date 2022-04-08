@@ -10,6 +10,8 @@ import close from 'src/assets/images/close.png'
 import { Link } from 'react-router-dom'
 import { DenomItem } from 'src/routes/Denoms/List'
 
+import { CloseCustom } from '../MobileNFTList'
+
 const NoDenomItem = () => {
   return (
     <div className="noItem">
@@ -20,7 +22,7 @@ const NoDenomItem = () => {
 }
 
 const DenomListItem = ({ name, no, brand, description }: DenomItem) => {
-  const handleOnclickDenom = () => {
+  const handleClickDenom = () => {
     sessionStorage.setItem(
       'denomInfo',
       JSON.stringify({
@@ -34,7 +36,7 @@ const DenomListItem = ({ name, no, brand, description }: DenomItem) => {
     <div className="itemCard">
       <Link to={`/mobile/denom/${no}/collections`}>
         <Image
-          onClick={handleOnclickDenom}
+          onClick={handleClickDenom}
           src={undefined}
           width="100%"
           height={327}
@@ -58,14 +60,6 @@ const DenomListItem = ({ name, no, brand, description }: DenomItem) => {
         </div>
       </div>
     </div>
-  )
-}
-
-export const CloseCustom = () => {
-  return (
-    <span className="close">
-      <img src={close} width={16} height={16} />
-    </span>
   )
 }
 
