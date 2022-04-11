@@ -5,12 +5,11 @@ import { Image } from 'antd'
 import noItem from 'src/assets/images/noItem.svg'
 import placeholderImage from 'src/assets/images/placeholderImage.png'
 import { useMyNFTList } from 'src/utils/http/apis'
-import { NFTItem } from 'src/routes/List'
 import { LoadingProgress } from 'src/components/LoadingProgress'
 import close from 'src/assets/images/close.png'
 import { Link } from 'react-router-dom'
 
-import { DenomFooter } from '../MobileDenom'
+import { DenomFooter } from '../share/DenomFooter'
 
 const NoNFTItem = () => {
   return (

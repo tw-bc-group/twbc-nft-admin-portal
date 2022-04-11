@@ -6,14 +6,11 @@ import noItem from 'src/assets/images/noItem.svg'
 import placeholderImage from 'src/assets/images/placeholderImage.png'
 import { useDenomsList } from 'src/utils/http/apis'
 import { LoadingProgress } from 'src/components/LoadingProgress'
-import homeActive from 'src/assets/images/home-active.png'
-import homeNoActive from 'src/assets/images/home-no-active.png'
-import mineNoActive from 'src/assets/images/mine-no-active.png'
-import mineActive from 'src/assets/images/mine-active.png'
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { DenomItem } from 'src/routes/Denoms/List'
 
 import { CloseCustom } from '../MobileNFTList'
+import { DenomFooter } from '../share/DenomFooter'
 
 const NoDenomItem = () => {
   return (
@@ -62,37 +59,6 @@ const DenomListItem = ({ name, no, brand, description, issuer }: DenomItem) => {
         <div className="creatorInfo">
           <span> {brand}</span>
         </div>
-      </div>
-    </div>
-  )
-}
-
-export const DenomFooter = () => {
-  const location = useLocation()
-
-  return (
-    <div className="footer">
-      <div>
-        <Link to="/mobile/denom">
-          <img
-            src={
-              location.pathname.startsWith('/mobile/denom')
-                ? homeActive
-                : homeNoActive
-            }
-          />
-        </Link>
-      </div>
-      <div>
-        <Link to="/mobile/nfts">
-          <img
-            src={
-              location.pathname.startsWith('/mobile/nfts')
-                ? mineActive
-                : mineNoActive
-            }
-          />
-        </Link>
       </div>
     </div>
   )
