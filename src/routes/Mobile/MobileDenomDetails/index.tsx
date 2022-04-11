@@ -1,12 +1,11 @@
 import React from 'react'
 import './index.less'
 import { Image } from 'antd'
-import { LeftOutlined } from '@ant-design/icons'
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import placeholderImage from 'src/assets/images/placeholderImage.png'
 import dayjs from 'dayjs'
 
-import { BackIconCustom } from '../MobileNFTDetail'
+import { MobileHeader } from '../share/MobileHeader'
 
 interface InfoItemInfo {
   name: string
@@ -30,9 +29,11 @@ const MobileDenomDetails = () => {
   return (
     <div className="denomDetailContainer">
       <div className="NFTDetails">
-        <div className="head">
-          <BackIconCustom url={`/mobile/denom/${denomId}/collections`} />
-        </div>
+        <MobileHeader
+          goBackUrl={`/mobile/denom/${denomId}/collections`}
+          className="head"
+        />
+
         <Image
           src={detailInfo?.resource?.url}
           width="100%"

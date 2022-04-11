@@ -9,7 +9,7 @@ import close from 'src/assets/images/close.png'
 import { Link, useParams } from 'react-router-dom'
 import { NFTItemInDenom } from 'src/routes/Denoms/NFTs/List'
 
-import { BackIconCustom } from '../MobileNFTDetail'
+import { MobileHeader } from '../share/MobileHeader'
 
 const CollectionItem = (item: NFTItemInDenom & { denomId?: string }) => {
   const handleClickCollection = () => {
@@ -58,9 +58,7 @@ const MobileDenomCollections = () => {
 
   return (
     <div className="collectionContainer">
-      <div className="head">
-        <BackIconCustom url="/mobile/denom" />
-      </div>
+      <MobileHeader goBackUrl="/mobile/denom" />
       <div className="listContent">
         <div className="denomInfo">
           <p>{denomInfo?.name}</p>

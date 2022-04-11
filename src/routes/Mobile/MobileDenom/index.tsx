@@ -9,8 +9,8 @@ import { LoadingProgress } from 'src/components/LoadingProgress'
 import { Link } from 'react-router-dom'
 import { DenomItem } from 'src/routes/Denoms/List'
 
-import { CloseCustom } from '../MobileNFTList'
 import { DenomFooter } from '../share/DenomFooter'
+import { MobileHeader } from '../share/MobileHeader'
 
 const NoDenomItem = () => {
   return (
@@ -56,7 +56,7 @@ const DenomListItem = ({ name, no, brand, description, issuer }: DenomItem) => {
 
       <div className="itemInfo">
         <p>{name}</p>
-        <div className="creatorInfo">
+        <div className="brandInfo">
           <span> {brand}</span>
         </div>
       </div>
@@ -69,10 +69,7 @@ const MobileDenom = () => {
 
   return (
     <div className="denomContainer">
-      <div className="head">
-        <span>NFT</span>
-        <CloseCustom />
-      </div>
+      <MobileHeader text="NFT" closeIcon={true} />
       {loading ? (
         <LoadingProgress />
       ) : (

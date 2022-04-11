@@ -9,7 +9,7 @@ import { CopyToClipboard } from 'react-copy-to-clipboard'
 import placeholderImage from 'src/assets/images/placeholderImage.png'
 import copy from 'src/assets/images/copy.png'
 
-import { CloseCustom } from '../MobileNFTList'
+import { MobileHeader } from '../share/MobileHeader'
 
 interface BackIconCustomProps {
   url: string
@@ -45,10 +45,12 @@ const MobileNFTDetail = () => {
       ) : (
         <div className="NFTDetails">
           {copied && <div className="copied">Address copied</div>}
-          <div className="head">
-            <BackIconCustom url="/mobile/nfts" />
-            <CloseCustom />
-          </div>
+          <MobileHeader
+            goBackUrl="/mobile/nfts"
+            closeIcon={true}
+            className="head"
+          />
+
           <Image
             src={detail?.imageUrl}
             width="100%"

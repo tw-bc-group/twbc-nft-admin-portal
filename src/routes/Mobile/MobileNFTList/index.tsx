@@ -10,6 +10,7 @@ import close from 'src/assets/images/close.png'
 import { Link } from 'react-router-dom'
 
 import { DenomFooter } from '../share/DenomFooter'
+import { MobileHeader } from '../share/MobileHeader'
 
 const NoNFTItem = () => {
   return (
@@ -20,7 +21,7 @@ const NoNFTItem = () => {
   )
 }
 
-const NFTListItem = ({ denom, nft, imageUrl, subject }: any) => {
+const NFTListItem = ({ nft, imageUrl, subject }: any) => {
   return (
     <div className="itemCard">
       <Link to={`/mobile/nfts/detail/${subject.no}/${nft.no}`}>
@@ -66,10 +67,8 @@ const MobileNFTList = () => {
 
   return (
     <div className="listContainer">
-      <div className="head">
-        <span>My NFT</span>
-        <CloseCustom />
-      </div>
+      <MobileHeader text="My NFT" closeIcon={true} />
+
       {loading ? (
         <LoadingProgress />
       ) : (
