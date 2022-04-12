@@ -21,10 +21,10 @@ const NoNFTItem = () => {
   )
 }
 
-const NFTListItem = ({ nft, imageUrl, subject }: any) => {
+const NFTListItem = ({ nft, imageUrl, subject, no }: any) => {
   return (
     <div className="itemCard">
-      <Link to={`/mobile/nfts/detail/${subject.no}/${nft.no}`}>
+      <Link to={`/mobile/nfts/detail/${subject.no}/${no}`}>
         <Image
           src={imageUrl}
           width="100%"
@@ -82,7 +82,8 @@ const MobileNFTList = () => {
                 imageUrl: item.collection.resource.url,
                 denom: item.collection.subject,
                 nft: item.collection,
-                createdAt: item.createdAt
+                createdAt: item.createdAt,
+                no: item.no
               }
               return <NFTListItem {...data} key={item.no} />
             })
