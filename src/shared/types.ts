@@ -36,3 +36,9 @@ export interface createNFTinDenomRequestBody {
   issueTotal: number
   url: string
 }
+
+export interface mintNFTRequestBody {
+  name: string
+  email: string
+  salesTime: string
+}

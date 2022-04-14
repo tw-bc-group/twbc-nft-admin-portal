@@ -29,7 +29,11 @@ export const authInterceptor = (clients: Array<AxiosInstance>) => {
       async (config) => {
         const token = sessionStorage.getItem('token')
         if (token) {
-          config.headers!['Authorization'] = 'Bearer ' + JSON.parse(token)
+          try {
+            config.headers!['Authorization'] = 'Bearer ' + JSON.parse(token)
+          } catch (e) {
+            console.log(e)
+          }
         }
         return config
       },

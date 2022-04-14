@@ -7,7 +7,8 @@ import {
   createDenomRequestBody,
   createNTFRequestBody,
   UserLoginRequestBody,
-  createNFTinDenomRequestBody
+  createNFTinDenomRequestBody,
+  mintNFTRequestBody
 } from '../../shared/types'
 import { DenomItem } from '../../routes/Denoms/List'
 import { NFTItemInDenom } from '../../routes/Denoms/NFTs/List'
@@ -33,6 +34,17 @@ export const uploadNFTFile = (
 
 export const createNFT = (data: createNTFRequestBody): Promise<string> =>
   httpInstance.post(`/nft`, data, {
+    headers: {
+      'Content-type': 'application/json'
+    }
+  })
+
+export const mintNFT = (
+  data: mintNFTRequestBody,
+  denomId: string,
+  nftId: string
+): Promise<string> =>
+  httpInstance.post(`/denoms/${denomId}/collections/${nftId}/apply`, data, {
     headers: {
       'Content-type': 'application/json'
     }

@@ -11,6 +11,13 @@ import { NFTItemInDenom } from 'src/routes/Denoms/NFTs/List'
 
 import { MobileHeader } from '../share/MobileHeader'
 
+export interface denomInfoType {
+  name: string
+  description: string
+  issuer: string
+  brand: string
+}
+
 const CollectionItem = (item: NFTItemInDenom & { denomId?: string }) => {
   const handleClickCollection = () => {
     sessionStorage.setItem('detailInfo', JSON.stringify(item))
@@ -51,10 +58,17 @@ export const CloseCustom = () => {
   )
 }
 
+let denomInfo: denomInfoType | null = null
+
 const MobileDenomCollections = () => {
   const { denomId } = useParams()
   const { data: list = [], loading } = useNFTsListInDenom(denomId)
-  const denomInfo = JSON.parse(sessionStorage.getItem('denomInfo') || '')
+
+  try {
+    denomInfo = JSON.parse(sessionStorage.getItem('denomInfo') as string)
+  } catch (e) {
+    console.log(e)
+  }
 
   return (
     <div className="collectionContainer">

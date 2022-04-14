@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import { Button, Divider, Image, Input, Modal, message } from 'antd'
-
 import './index.less'
-import { httpInstance } from '../../utils/http'
+import { useMintNFT } from 'src/hooks/useMintNFT'
 
 type TransferNFTProps = {
   type: 'link' | 'primary'
@@ -16,30 +15,35 @@ type TransferNFTProps = {
 const TransferNFT = (props: TransferNFTProps) => {
   const { type, inDetail, no, name, url, dno } = props
   const [isModalVisible, setIsModalVisible] = useState(false)
-  const [loading, setLoading] = useState(false)
   const [enableTransfer, setEnableTransfer] = useState(true)
   const [address, setAddress] = useState('')
+
+  const handleMintSuccess = () => {
+    setIsModalVisible(false)
+    message.success('NFT Mint Success!')
+  }
+
+  const handleMintError = () => {
+    message.error('NFT Mint Error!')
+  }
+
+  const { runMintNFT, loading } = useMintNFT({
+    onSuccess: handleMintSuccess,
+    onError: handleMintError,
+    denomId: dno || '',
+    nftId: no
+  })
+
   const showModal = () => {
     setIsModalVisible(true)
   }
 
   const handleTransfer = () => {
-    setLoading(true)
-
-    httpInstance
-      .post(`/denoms/${dno}/collections/${no}/apply`, {
-        name: name,
-        email: address,
-        salesTime: '2022-04-08T00:30:04.408Z'
-      })
-      .then((res) => {
-        setLoading(false)
-        setIsModalVisible(false)
-        message.success('NFT Mint Success!')
-      })
-      .catch((err) => {
-        setLoading(false)
-      })
+    runMintNFT({
+      name: name,
+      email: 'adam.wong@thoughtworks.com',
+      salesTime: new Date().toISOString()
+    })
   }
 
   const handleCancel = () => {

@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import homeActive from 'src/assets/images/home-active.png'
-import homeNoActive from 'src/assets/images/home-no-active.png'
-import mineNoActive from 'src/assets/images/mine-no-active.png'
-import mineActive from 'src/assets/images/mine-active.png'
+import homeActive from 'src/assets/images/home-active.svg'
+import homeNoActive from 'src/assets/images/home-no-active.svg'
+import mineNoActive from 'src/assets/images/mine-no-active.svg'
+import mineActive from 'src/assets/images/mine-active.svg'
 import './index.less'
 
 export const DenomFooter = () => {
