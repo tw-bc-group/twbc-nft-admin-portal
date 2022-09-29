@@ -96,10 +96,13 @@ const TransferNFT = (props: TransferNFTProps) => {
           </>
         )}
 
-        <p>Destination User Account</p>
+        <p>Destination User Account:</p>
+        <p>
+          请注意：当前产品为试用阶段，未开放账号注册。试用Mint功能请用"adam.wong@thoughtworks.com"。Mint完成后，可以在mobile页面查看已Mint的NFT。
+        </p>
         <Input
           onChange={checkAndSetWalletAddress}
-          placeholder="user email"
+          placeholder="Email address, eg: adam.wong@thoughtworks.com"
           value={address}
         />
       </Modal>
