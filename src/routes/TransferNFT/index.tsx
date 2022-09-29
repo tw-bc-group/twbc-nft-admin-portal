@@ -97,9 +97,18 @@ const TransferNFT = (props: TransferNFTProps) => {
         )}
 
         <p>Destination User Account:</p>
+        <p>请注意：</p>
         <p>
-          请注意：当前产品为试用阶段，未开放账号注册。试用Mint功能请用"adam.wong@thoughtworks.com"。Mint完成后，可以在mobile页面查看已Mint的NFT。
+          1.当前产品为试用阶段，未开放账号注册。试用Mint功能请用"adam.wong@thoughtworks.com"。Mint完成后，可以在mobile页面查看已Mint的NFT。
         </p>
+        <p>
+          2.完成Mint后，可以在
+          <a target="_blank" href="https://explorer.testnet.bianjie.ai">
+            https://explorer.testnet.bianjie.ai
+          </a>
+          测试网的浏览器里就可以看到这个交易。上链操作一般需要5秒左右。
+        </p>
+
         <Input
           onChange={checkAndSetWalletAddress}
           placeholder="Email address, eg: adam.wong@thoughtworks.com"
